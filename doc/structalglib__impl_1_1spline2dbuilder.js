@@ -1,0 +1,26 @@
+var structalglib__impl_1_1spline2dbuilder =
+[
+    [ "adddegreeoffreedom", "structalglib__impl_1_1spline2dbuilder.html#af8ddc34653599c61fba84d1bf362a983", null ],
+    [ "areatype", "structalglib__impl_1_1spline2dbuilder.html#ae596c7735452a68424754bdbe8d8c1bb", null ],
+    [ "d", "structalglib__impl_1_1spline2dbuilder.html#a5b5af7c3d8e6452b893088ef5971237c", null ],
+    [ "gridtype", "structalglib__impl_1_1spline2dbuilder.html#a7c08885a3dddc29ae0a603daa1b27946", null ],
+    [ "interfacesize", "structalglib__impl_1_1spline2dbuilder.html#a981f900fe18d10d176aec24181b8d255", null ],
+    [ "kx", "structalglib__impl_1_1spline2dbuilder.html#a474be7c0e82ca233481b1eb6db05ff26", null ],
+    [ "ky", "structalglib__impl_1_1spline2dbuilder.html#a2eec25c2f024451be225d795f95f9af9", null ],
+    [ "lambdabase", "structalglib__impl_1_1spline2dbuilder.html#a9317f972f652ee612a8f3b00d7096fd0", null ],
+    [ "lsqrcnt", "structalglib__impl_1_1spline2dbuilder.html#a5d9a4de541003873b3610ff7f881c105", null ],
+    [ "maxcoresize", "structalglib__impl_1_1spline2dbuilder.html#a1dceef51736314c1030cc4bd0e905a23", null ],
+    [ "nlayers", "structalglib__impl_1_1spline2dbuilder.html#acbebc3d948b14c7952eb65a67c5bdcf1", null ],
+    [ "npoints", "structalglib__impl_1_1spline2dbuilder.html#a2e3381303ab2f46b20f1ef4cd36edbaa", null ],
+    [ "priorterm", "structalglib__impl_1_1spline2dbuilder.html#aaef5eaa284bd4af8d687b88f1ae972a4", null ],
+    [ "priortermval", "structalglib__impl_1_1spline2dbuilder.html#a4e7c006f4d452fb0d8ba20230d640290", null ],
+    [ "smoothing", "structalglib__impl_1_1spline2dbuilder.html#a36649c8e8a8942a3631ac4783ef9875c", null ],
+    [ "solvertype", "structalglib__impl_1_1spline2dbuilder.html#a2c139f60e51635474c76bc47bb8ac862", null ],
+    [ "sx", "structalglib__impl_1_1spline2dbuilder.html#a32dd40471fedd6ffc2e8a469a7b8902c", null ],
+    [ "sy", "structalglib__impl_1_1spline2dbuilder.html#a1fa564cb78801b17e24e61c01e0a9564", null ],
+    [ "xa", "structalglib__impl_1_1spline2dbuilder.html#ac2482a0a4f019367a35812ac901ca790", null ],
+    [ "xb", "structalglib__impl_1_1spline2dbuilder.html#a6dd81658f341d573c85780e30f7127df", null ],
+    [ "xy", "structalglib__impl_1_1spline2dbuilder.html#a15a280ae82ae589f87c5b574945699f4", null ],
+    [ "ya", "structalglib__impl_1_1spline2dbuilder.html#a2a09b44dcf05dbfb879f36f0bfb1d7ea", null ],
+    [ "yb", "structalglib__impl_1_1spline2dbuilder.html#a0643953be70754dea239918016418e7b", null ]
+];

@@ -1,0 +1,26 @@
+var structalglib__impl_1_1decisionforestbuilder =
+[
+    [ "dsbinary", "structalglib__impl_1_1decisionforestbuilder.html#af08e3cd5056743aa0996bef6b4750ea7", null ],
+    [ "dsctotals", "structalglib__impl_1_1decisionforestbuilder.html#ae27b537860f86258b921bb4d99d104e8", null ],
+    [ "dsdata", "structalglib__impl_1_1decisionforestbuilder.html#a37239730d32e0bae7af07f90321e2994", null ],
+    [ "dsival", "structalglib__impl_1_1decisionforestbuilder.html#aca9611d5a13eaf33e155ec05e7da72f4", null ],
+    [ "dsmax", "structalglib__impl_1_1decisionforestbuilder.html#aab51f1c2227eaee358ad57a917b76962", null ],
+    [ "dsmin", "structalglib__impl_1_1decisionforestbuilder.html#ad58fa9b3b6aca2440bb22cdc3617fdde", null ],
+    [ "dsravg", "structalglib__impl_1_1decisionforestbuilder.html#a832cd6bd8ae384e184ca765739f3ce45", null ],
+    [ "dsrval", "structalglib__impl_1_1decisionforestbuilder.html#a86c1251ce6165bf3d9b6e8e43c6f1669", null ],
+    [ "dstype", "structalglib__impl_1_1decisionforestbuilder.html#a756da7a5f98d5d9bace3bf77352101ad", null ],
+    [ "nclasses", "structalglib__impl_1_1decisionforestbuilder.html#a1034c899d3c4d90f92c218a78bc9e58a", null ],
+    [ "npoints", "structalglib__impl_1_1decisionforestbuilder.html#ae2d542550089aca38d55856fb0cdc03e", null ],
+    [ "nvars", "structalglib__impl_1_1decisionforestbuilder.html#afdf454ea8ecfa27a0c9f28fec298a169", null ],
+    [ "rdfalgo", "structalglib__impl_1_1decisionforestbuilder.html#a814f06ae65b438e8a3edd9d2bfe2800e", null ],
+    [ "rdfglobalseed", "structalglib__impl_1_1decisionforestbuilder.html#af50278796ac10c9db37f7831a6cc7826", null ],
+    [ "rdfprogress", "structalglib__impl_1_1decisionforestbuilder.html#abf91b50419fef1e4e6d80028035e70ff", null ],
+    [ "rdfratio", "structalglib__impl_1_1decisionforestbuilder.html#a0f7f631fd32bd469303cee9ff84ec0c4", null ],
+    [ "rdfsplitstrength", "structalglib__impl_1_1decisionforestbuilder.html#aa509978dd0177eb89297a7cd870a0437", null ],
+    [ "rdftotal", "structalglib__impl_1_1decisionforestbuilder.html#ae04998092bf4b1297c5618310f63cda5", null ],
+    [ "rdfvars", "structalglib__impl_1_1decisionforestbuilder.html#a2da64e13af6accb6046a38e674903274", null ],
+    [ "treefactory", "structalglib__impl_1_1decisionforestbuilder.html#af9a8a137c28f19f85dc881c18204d729", null ],
+    [ "treepool", "structalglib__impl_1_1decisionforestbuilder.html#a6fdc4c18e10befcffc2e515f041dcea7", null ],
+    [ "votepool", "structalglib__impl_1_1decisionforestbuilder.html#a6e88b9b40edfdd974b976e5c53ef6125", null ],
+    [ "workpool", "structalglib__impl_1_1decisionforestbuilder.html#aad4f2de5a606d1ac00c7a38ab040b639", null ]
+];

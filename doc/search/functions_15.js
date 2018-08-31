@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['unequalvariancettest',['unequalvariancettest',['../namespacealglib.html#af6b992fe41a5e56c7fc4dff88c4e0e10',1,'alglib::unequalvariancettest()'],['../namespacealglib__impl.html#a8c1853f0f5f62116c7ac13f56f10aed4',1,'alglib_impl::unequalvariancettest()']]],
+  ['unserializecomplex',['unserializecomplex',['../namespacealglib__impl.html#a6f7587475d5bf0c400fbd2ac22f2c573',1,'alglib_impl']]],
+  ['unserializeintegerarray',['unserializeintegerarray',['../namespacealglib__impl.html#a0dcee9f7ee711440992fc5a93e0ec58f',1,'alglib_impl']]],
+  ['unserializerealarray',['unserializerealarray',['../namespacealglib__impl.html#a2efd5e003f4bd7547d1910cccf091728',1,'alglib_impl']]],
+  ['unserializerealmatrix',['unserializerealmatrix',['../namespacealglib__impl.html#ad340fc29b9ea15185c8ff4943f66d95b',1,'alglib_impl']]],
+  ['unsetintegerarray',['unsetintegerarray',['../namespacealglib__impl.html#a666b55f91fceda2c1ca03bbf4706a5eb',1,'alglib_impl']]],
+  ['unsetrealarray',['unsetrealarray',['../namespacealglib__impl.html#aca40a3c9fd0961f09fed4b1a759342ef',1,'alglib_impl']]],
+  ['unsetrealmatrix',['unsetrealmatrix',['../namespacealglib__impl.html#a3450224e21251ee2207e96c135d4bc6b',1,'alglib_impl']]],
+  ['update',['update',['../class_page_metrics.html#a4fcd00c30f317e52439f1a67c6d17927',1,'PageMetrics']]],
+  ['updatemathdata',['updateMathData',['../class_main_window.html#a277292a6b8ac3d1bd3ec9937eb8c247a',1,'MainWindow']]],
+  ['updatemathmodel',['updateMathModel',['../class_document_handler.html#aaa6ead4c7b6b5c100885de1f2df41a3b',1,'DocumentHandler']]],
+  ['updatewindowtitle',['updateWindowTitle',['../class_document_handler.html#ada7450138f7689ebe322e0880d7afbe5',1,'DocumentHandler']]],
+  ['upperbound',['upperbound',['../namespacealglib__impl.html#a6ebf4ef2b6aad2671269a89e10e41722',1,'alglib_impl']]],
+  ['upperhessenberg1norm',['upperhessenberg1norm',['../namespacealglib__impl.html#aa83b7db558f69a916f8b38fad5f65e42',1,'alglib_impl']]],
+  ['upperhessenbergschurdecomposition',['upperhessenbergschurdecomposition',['../namespacealglib__impl.html#a08030271c55e7a4c97496d06c8ccd515',1,'alglib_impl']]],
+  ['usepagemode',['usePageMode',['../class_pages_text_edit.html#af23ef3b18f267038d5dbdcc939b4ac14',1,'PagesTextEdit']]],
+  ['userfriendlycurrentfile',['userFriendlyCurrentFile',['../class_file_window.html#a10bec4574f0c364a218abba35e031a0c',1,'FileWindow']]]
+];

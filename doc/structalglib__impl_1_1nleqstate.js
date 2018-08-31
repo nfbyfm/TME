@@ -1,0 +1,27 @@
+var structalglib__impl_1_1nleqstate =
+[
+    [ "candstep", "structalglib__impl_1_1nleqstate.html#a614e2650222e0b7c18f86b9e2b92bc23", null ],
+    [ "cgbuf", "structalglib__impl_1_1nleqstate.html#a93ecab490cf323fec62cc6e01b49260e", null ],
+    [ "epsf", "structalglib__impl_1_1nleqstate.html#a4c2d0e299df7c9da834a8dc9bcdb886a", null ],
+    [ "f", "structalglib__impl_1_1nleqstate.html#adda028b7a439687f42f7271f70e5512a", null ],
+    [ "fbase", "structalglib__impl_1_1nleqstate.html#a3ef5b9a59dd25766e78f0a1ba042aea1", null ],
+    [ "fi", "structalglib__impl_1_1nleqstate.html#a4234aeb178f05c7dcef56015325ce2f1", null ],
+    [ "fprev", "structalglib__impl_1_1nleqstate.html#a20bf260311fa126ab6380626e2a84d34", null ],
+    [ "j", "structalglib__impl_1_1nleqstate.html#ad82ce177a1cfddfb0d61111d367b87b8", null ],
+    [ "m", "structalglib__impl_1_1nleqstate.html#a9a02ae38f4341ff4cd5616028b039ca0", null ],
+    [ "maxits", "structalglib__impl_1_1nleqstate.html#ae7e16fdfbeeb72384f7d25ac1392911b", null ],
+    [ "n", "structalglib__impl_1_1nleqstate.html#acbdd1fed8f303351e113f037209b8205", null ],
+    [ "needf", "structalglib__impl_1_1nleqstate.html#a94bd323f2d6b988989c618a07ec116e7", null ],
+    [ "needfij", "structalglib__impl_1_1nleqstate.html#a7eea44d6f0147a27f8aa0a15e199ba18", null ],
+    [ "repiterationscount", "structalglib__impl_1_1nleqstate.html#aa28713fbcebf35f0ce188ed138d4de79", null ],
+    [ "repnfunc", "structalglib__impl_1_1nleqstate.html#a55aff2365443580f7db48b843f649acd", null ],
+    [ "repnjac", "structalglib__impl_1_1nleqstate.html#a47e97c87c24619469ef3d4dec7ccf312", null ],
+    [ "repterminationtype", "structalglib__impl_1_1nleqstate.html#a658f531dde7b42923849d0c0b76ee473", null ],
+    [ "rightpart", "structalglib__impl_1_1nleqstate.html#a15bef4539b4905416d62b7ec8dbed0f5", null ],
+    [ "rstate", "structalglib__impl_1_1nleqstate.html#aa8c4bf30d5f5e7ca38bc82464342429b", null ],
+    [ "stpmax", "structalglib__impl_1_1nleqstate.html#aa1eef2d26d15193640eb3fb50c691bb3", null ],
+    [ "x", "structalglib__impl_1_1nleqstate.html#a914622fbe6fffbca999d973de2355a7d", null ],
+    [ "xbase", "structalglib__impl_1_1nleqstate.html#a68b581f87950afe27940313fb838cd64", null ],
+    [ "xrep", "structalglib__impl_1_1nleqstate.html#afa2f6ac60cb9ea1133beb7400b416ed9", null ],
+    [ "xupdated", "structalglib__impl_1_1nleqstate.html#a3558ecd09fdf79f6eb8e855bcbfbf32e", null ]
+];

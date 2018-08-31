@@ -1,0 +1,28 @@
+var structalglib__impl_1_1odesolverstate =
+[
+    [ "dy", "structalglib__impl_1_1odesolverstate.html#a382cdce5ff0992c410dfea7f35f70015", null ],
+    [ "eps", "structalglib__impl_1_1odesolverstate.html#a1a85c7e64005ab8c9b8138c6cfcae976", null ],
+    [ "escale", "structalglib__impl_1_1odesolverstate.html#a508b0f68e359da06aaf5cb7c410e2fe1", null ],
+    [ "fraceps", "structalglib__impl_1_1odesolverstate.html#a39424f0ed6814a12e198ba655656d890", null ],
+    [ "h", "structalglib__impl_1_1odesolverstate.html#acc21747fbb36921e1583376d97347f95", null ],
+    [ "m", "structalglib__impl_1_1odesolverstate.html#a3f0e6a47033ca10fb258f7596ba190e4", null ],
+    [ "n", "structalglib__impl_1_1odesolverstate.html#a95a48cecd1b9d038e9f8eecb6a3e0099", null ],
+    [ "needdy", "structalglib__impl_1_1odesolverstate.html#a232ddb76a222d56951626dbc8af7d8ae", null ],
+    [ "repnfev", "structalglib__impl_1_1odesolverstate.html#a9a5303cc0dfc46b4ca9d0c3f711c3812", null ],
+    [ "repterminationtype", "structalglib__impl_1_1odesolverstate.html#a651b2038946272fda5752530c07de92b", null ],
+    [ "rka", "structalglib__impl_1_1odesolverstate.html#a1ee334e3f32585c148777d3a3f3fb7cb", null ],
+    [ "rkb", "structalglib__impl_1_1odesolverstate.html#a794f2f29bb1bb2ee349edfe072408c14", null ],
+    [ "rkc", "structalglib__impl_1_1odesolverstate.html#a8bbc9dce7f05d6a33607ad5f15097508", null ],
+    [ "rkcs", "structalglib__impl_1_1odesolverstate.html#a8876f655d31fd40eab5c8ff18b5fef5b", null ],
+    [ "rkk", "structalglib__impl_1_1odesolverstate.html#a7cb322b05d357af038430df906788ac9", null ],
+    [ "rstate", "structalglib__impl_1_1odesolverstate.html#abba849be46e7884471ac965466f838ac", null ],
+    [ "solvertype", "structalglib__impl_1_1odesolverstate.html#ab40798639ebda1010c0345388d29d6bf", null ],
+    [ "x", "structalglib__impl_1_1odesolverstate.html#a479899d291a79a80403222dec560e376", null ],
+    [ "xg", "structalglib__impl_1_1odesolverstate.html#a107eaff096710743f78e5118d8a46c5b", null ],
+    [ "xscale", "structalglib__impl_1_1odesolverstate.html#a7ab4d1369e27fadc08cf158db14f85a4", null ],
+    [ "y", "structalglib__impl_1_1odesolverstate.html#a773523a46c7a4fd78a64546fc6384808", null ],
+    [ "yc", "structalglib__impl_1_1odesolverstate.html#a08756e8c8b6aff4d82d125be2b75d7a9", null ],
+    [ "yn", "structalglib__impl_1_1odesolverstate.html#a4e612dfb1490cfae30cd58ae71af93db", null ],
+    [ "yns", "structalglib__impl_1_1odesolverstate.html#aff321f8b6816ffb19874d1dcff391bc3", null ],
+    [ "ytbl", "structalglib__impl_1_1odesolverstate.html#acc9aeb48fbd149e766535ab0c4259b45", null ]
+];
