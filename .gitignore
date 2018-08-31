@@ -36,4 +36,6 @@ Makefile*
 #QtCtreator CMake
 CMakeLists.txt.user
 
-build_scripts
+build_scripts/*
+src/copy_Code_for_Testing.bat
+other/*
