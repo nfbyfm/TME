@@ -1,0 +1,70 @@
+/*
+	BLACK = 			#000000
+	WHITE = 			#ffffff
+	COLOR_MENU = 		#574b4f
+	BACKGROUND = 		#353537
+	BORDER = 			#4d4e52
+	TEXT =				#f0e5d1
+	BUTTON =			#fbd05d
+	TURQUOISE = 		#8ba695
+	RED = 				#c33d22
+	DARKORGANGE = 		#d46e2c
+	ORANGE = 			#dea033
+	LIGHTBLUE = 		#7aaf9f
+	DARKERBLUE = 		#679cc8
+	BRIGHTLIGHTBLUE = 	#58dfff
+*/
+
+
+* {
+	background: #353537;
+	color: #f0e5d1;
+}
+
+
+QTextEdit{
+	background: #ffffff;
+	color: #000000;
+	border: 1px solid #679cc8;
+}
+
+QTreeView {
+	background: #ffffff;
+	color: #000000;
+}
+
+QLineEdit {
+	background: #ffffff;
+	color: #000000;
+}
+
+QTableWidget {
+	background: #ffffff;
+	color: #000000;
+	border: 1px solid #679cc8;
+}
+
+QWidget::item:selected {
+	background: #fbd05d;
+	color: #353537;
+}
+
+
+QTabWidget::pane { 
+	/* The tab widget frame 
+	border-top: 2px solid #C2C7CB; */
+	background: #c33d22;
+}
+
+/* Style the tab using the tab sub-control. Note that it reads QTabBar _not_ QTabWidget */
+QTabBar::tab {
+	background: #dea033;
+	border: 1px solid #4d4e52;
+	margin : 2px;
+}
+
+QTabBar::tab:!selected {
+	/*margin-top: 2px; */
+	background: #d46e2c;
+}
+

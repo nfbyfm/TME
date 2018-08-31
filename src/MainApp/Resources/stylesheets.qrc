@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>stylesheets/Atom.stylesheet</file>
+        <file>stylesheets/Atom2.stylesheet</file>
+        <file>stylesheets/darkorange.stylesheet</file>
+        <file>stylesheets/QTDark.stylesheet</file>
+    </qresource>
+</RCC>
