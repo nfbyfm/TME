@@ -20,6 +20,8 @@
 #include <Model/Math/mathmodel.h>
 #include <Control/FaultHandler/errormessage.h>
 
+#include <View/Dialogs/textdocumentpropertydialog.h>
+
 /**
  * @brief calls for handling all the documents
  *
@@ -200,6 +202,13 @@ public slots:
      *
      */
     void showPdfAfterExportChanged(bool showPdf);
+
+    /**
+     * @brief show Dialog with the current document-settings for editing
+     *
+     */
+    void editDocumentProperties();
+
 
 private slots:
     /**

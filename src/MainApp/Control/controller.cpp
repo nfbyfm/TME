@@ -73,6 +73,7 @@ void Controller::connect()
     QObject::connect(mView, SIGNAL(openFile(QStringList *)), docHandler, SLOT(openDocument(QStringList *)));
     QObject::connect(mView, SIGNAL(saveFile(QStringList *)), docHandler, SLOT(saveFile(QStringList *)));
     QObject::connect(mView, SIGNAL(saveFileAs(QStringList *)), docHandler, SLOT(saveFileAs(QStringList *)));
+    QObject::connect(mView, SIGNAL(showDocumentProperties()), docHandler, SLOT(editDocumentProperties()));
 
     /*
     QObject::connect(mView, SIGNAL(printFile()), docHandler, SLOT(filePrint()));

@@ -22,46 +22,26 @@
 
 
 /*
- * 0) Testing
- * 1) update Doxygen-Documentation
- *
- * 5) Welcome-Document:   kurzes How-To-Dokument erstellen
- *
- *
- *
- *
- *
- *
- * 1) Text:             Spellchecking:      http://wiki.qt.io/Spell-Checking-with-Hunspell
+ * 1) Testing: write mor unittests
+ * 2) update Doxygen-Documentation
+ * 3) Welcome-Document:   short How-To-Document, add to release *
+ * 4) Text:             Spellchecking:      http://wiki.qt.io/Spell-Checking-with-Hunspell
  *                                          https://github.com/manisandro/qtspell
  *                                          http://www.qtcentre.org/threads/38227-QTextEdit-with-hunspell-spell-checker-and-syntax-highlighter
  *                                          http://hunspell.github.io/
  *
- * 2) Document:         Properties:         Dialog
+ * 5) Document:         Properties:         Dialog
  *                                          struct for properties, -> use for Signals / Slots
  *                                          set-Functions for/from documentHandler
  *                                          default-Settings when creating new document
  *
- * 3) Edit:             search-function
+ * 6) Edit:             search-function
  *                      search- & replace-function
- * 4) Images:           when using relative paths: what if the document hasn't been saved yet? Problems when printing!! -> Don't get rendered!
+ * 7) Images:           when using relative paths: what if the document hasn't been saved yet? Problems when printing!! -> Don't get rendered!
  *
- * 5) rendern von Mathematik-Formeln -> als Bild in html-Dokument einfügen?
- * 6) Setting:          show pdf after export
- * 7) Deploy:           https://github.com/daviddrell/visualsc/wiki/How-to-Deploy-a-Qt-5-Application-for-Windows
- * 8) use of Ribbon
-
-fünf wichtige Punkte:
-    - Dokument
-    - Darstellung (Dokument & Mathematik)
-    - Mathematik-Engine
-    - Testing
-    - Dokumentation
-
-weitere wichtige Punkte:
-    - Deployment
-    - übersetzung der App
-    - Zielsetzung erreicht
+ * 8) rendern von Mathematik-Formeln -> als Bild in html-Dokument einfügen?
+ * 9) use of Ribbon for menu
+ * 10) Mathjax with qt quick?
  */
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),  ui(new Ui::MainWindow)
@@ -242,7 +222,7 @@ MainWindow::~MainWindow()
 
 
     //Document-Actions
-        //connect(ui->action_properties, &QAction::triggered, this, &MainWindow::editDocumentProperties);
+        connect(ui->action_DocumentProperties, &QAction::triggered, this, &MainWindow::showDocumentProperties);//editDocumentProperties);
         connect(mathForm, &MathForm::valuesChanged, this, &MainWindow::documentHasChanged);
 
     //Text-Font-Actions
@@ -1051,13 +1031,6 @@ MainWindow::~MainWindow()
         fdia->show();
     }
 
-
-    void MainWindow::editDocumentProperties()
-    {
-        TextDocumentPropertyDialog *pDialog = new TextDocumentPropertyDialog(this);
-        pDialog->setWindowTitle(tr("Documentproperties"));
-        pDialog->show();
-    }
 
     void  MainWindow::recieveErrorMessage(ErrorMessage *msg)
     {

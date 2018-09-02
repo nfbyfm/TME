@@ -711,6 +711,14 @@ void DocumentHandler::documentChanged()
     emit updateWindowTitle(fileName, false);
 }
 
+void DocumentHandler::editDocumentProperties()
+{
+    TextDocumentPropertyDialog *pDialog = new TextDocumentPropertyDialog();
+    pDialog->setWindowTitle(tr("Documentproperties"));
+    pDialog->show();
+}
+
+
 #define MISC_FUNCTIONS_END }
 
 

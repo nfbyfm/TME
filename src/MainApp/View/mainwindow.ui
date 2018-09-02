@@ -143,12 +143,19 @@
     <addaction name="action_solve"/>
     <addaction name="actiondetect_formulas"/>
    </widget>
+   <widget class="QMenu" name="menu_Document">
+    <property name="title">
+     <string>&amp;Document</string>
+    </property>
+    <addaction name="action_DocumentProperties"/>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
    <addaction name="menu_Text"/>
    <addaction name="menu_Image"/>
    <addaction name="menu_Table"/>
    <addaction name="menu_Math"/>
+   <addaction name="menu_Document"/>
    <addaction name="menuE_xtras"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -693,6 +700,11 @@
   <action name="actionList_Standard">
    <property name="text">
     <string>Standard</string>
+   </property>
+  </action>
+  <action name="action_DocumentProperties">
+   <property name="text">
+    <string>&amp;Properties</string>
    </property>
   </action>
  </widget>

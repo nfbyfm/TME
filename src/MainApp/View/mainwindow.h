@@ -37,7 +37,6 @@
 #include <View/UI-Elements/imageform.h>
 #include <View/UI-Elements/mathform.h>
 #include <View/Dialogs/finddialog.h>
-#include <View/Dialogs/textdocumentpropertydialog.h>
 #include <View/Dialogs/tabledialog.h>
 
 namespace Ui
@@ -143,17 +142,6 @@ signals:
      */
     void saveFileAs(QStringList *formulaList);
 
-    /*
-    void printFile();
-    void printPDF();
-    void showPrintPreview();
-    */
-    /*
-    void printFile(QList <QPair<QString, QString> *> *searchReplaceList);
-    void printPDF(QList <QPair<QString, QString> *> *searchReplaceList);
-    void showPrintPreview(QList <QPair<QString, QString> *> *searchReplaceList);
-    */
-
     /**
      * @brief print-function
      *
@@ -172,14 +160,17 @@ signals:
      */
     void showPrintPreview(QStringList *formulaList);
 
-    //void variableListUpdated(QStringList *vList);
-    //void formulaListUpdated(QStringList *fList);
-
     /**
      * @brief function for sending an errormessage
      * (connected to fualthandler)
      */
     void sendErrorMessage(ErrorMessage *message);
+
+    /**
+     * @brief signal to show the document properties-dialog
+     *
+     */
+    void showDocumentProperties();
 
 public slots:
 
@@ -335,11 +326,6 @@ private slots:
     void searchText();
     void searchAndReplaceText();
 
-    /**
-     * @brief
-     *
-     */
-    void editDocumentProperties();
 
     /**
      * @brief detect if an image is selected and show the ImageForm (Toolbox) accordingly
