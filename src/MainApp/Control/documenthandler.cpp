@@ -511,22 +511,8 @@ void DocumentHandler::setCurrentFileName(const QString &fiName)
 
             if(showpdfAfterExport)
             {
-                qDebug()<<"show the pdf after the export -> systemcall: start " << fileName.toLatin1();
-                QString exec = "start " + fileName.toLatin1();
-                QProcess process;
-
-                qInfo("Starting: " + exec.toLatin1());
-
-                process.start(exec);
-                if ( !process.waitForFinished( -1 ) )
-                {
-                    qWarning("Error:" + process.errorString().toLatin1());
-                    return;
-                }
-                if(process.exitCode()==0)
-                {
-                    qDebug()<<"Systemcall done.";
-                }
+                qDebug()<<"show the pdf after the export -> openUrl " << ("file:///" + fileName);
+                QDesktopServices::openUrl(QUrl("file:///" + fileName, QUrl::TolerantMode));
             }
         }
     //! [0]

@@ -15,7 +15,7 @@
 #include <QMimeDatabase>
 #include <QMimeType>
 #include <QXmlStreamReader>
-#include <QProcess>
+#include <QDesktopServices>
 
 #include <Model/Math/mathmodel.h>
 #include <Control/FaultHandler/errormessage.h>
