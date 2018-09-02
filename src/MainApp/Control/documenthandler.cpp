@@ -13,6 +13,7 @@ DocumentHandler::DocumentHandler(QObject *parent) : QObject(parent)
     autoSaveTimer = new QTimer(this);
     autoSaveTimer->setSingleShot(false);
     autoSaveTimer->stop();
+    showpdfAfterExport=false;
     connect(autoSaveTimer, &QTimer::timeout, this, &DocumentHandler::autoSave);
 }
 
@@ -507,6 +508,26 @@ void DocumentHandler::setCurrentFileName(const QString &fiName)
             documentForPrint->print(&printer);
 
             emit showStatusMessage(tr("File '%1' has been exported").arg(QDir::toNativeSeparators(fileName)),2000);
+
+            if(showpdfAfterExport)
+            {
+                qDebug()<<"show the pdf after the export -> systemcall: start " << fileName.toLatin1();
+                QString exec = "start " + fileName.toLatin1();
+                QProcess process;
+
+                qInfo("Starting: " + exec.toLatin1());
+
+                process.start(exec);
+                if ( !process.waitForFinished( -1 ) )
+                {
+                    qWarning("Error:" + process.errorString().toLatin1());
+                    return;
+                }
+                if(process.exitCode()==0)
+                {
+                    qDebug()<<"Systemcall done.";
+                }
+            }
         }
     //! [0]
     #endif
@@ -640,6 +661,13 @@ void DocumentHandler::setCurrentFileName(const QString &fiName)
             }
         }
         return retVal;
+    }
+
+
+    void DocumentHandler::showPdfAfterExportChanged(bool showPdf)
+    {
+        this->showpdfAfterExport = showPdf;
+        qDebug()<<"Documenthandler: showPdfAfterexport has been set:"<<showPdf;
     }
 #define FILE_PRINT_FUNCTIONS_END }
 

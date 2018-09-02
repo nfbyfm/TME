@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>159</height>
+    <height>197</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -122,6 +122,13 @@
       </spacer>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="checkBoxShowPdfAfterExport">
+     <property name="text">
+      <string>show pdf after export</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">

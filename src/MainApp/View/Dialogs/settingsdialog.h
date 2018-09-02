@@ -56,6 +56,18 @@ public:
      */
     void setAutoSaveTimeout(double value);
 
+
+    /**
+     * @brief setter-function
+     *
+     */
+    void setShowPdfAfterExport(bool showPdf);
+
+
+
+
+
+
     /**
      * @brief getter-function
      *
@@ -85,6 +97,13 @@ public:
      *
      */
     double getAutoSaveTimeout();
+
+    /**
+     * @brief getter-function
+     *
+     */
+    bool getShowPdfAfterExport();
+
 
 private:
     Ui::SettingsDialog *ui;

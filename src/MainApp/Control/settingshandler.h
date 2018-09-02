@@ -82,6 +82,11 @@ signals:
      */
     void sendError(ErrorMessage *errmsg);
 
+    /**
+     * @brief function for relaying that showing the pdf after an export is wanted/unwanted
+     *
+     */
+    void showPdfAfterExportChanged(bool showPdf);
 
 public slots:
 

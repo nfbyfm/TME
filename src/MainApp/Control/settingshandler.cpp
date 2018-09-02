@@ -17,6 +17,7 @@ void SettingsHandler::initSettingsMap()
     settingsMap->insert(SETTINGS_ID::MATHSOLVER_SHOWERRORLIST,"mathSolverShowErrorList");
     settingsMap->insert(SETTINGS_ID::AUTOSAVE_ENABLE,"autoSave_enabled");
     settingsMap->insert(SETTINGS_ID::AUTOSAVE_TIMEOUT,"autoSaveTimeout");
+    settingsMap->insert(SETTINGS_ID::SHOW_PDF_AFTER_EXPORT,"showPdfAfterExport");
 }
 
 void SettingsHandler::loadSettings()
@@ -70,6 +71,17 @@ void SettingsHandler::loadSettings()
         timeout = settingval.toDouble(&settingFound);
 
     emit autosaveChanged(autosaveIsEnabled, timeout);
+
+
+    //show pdf after export
+    settingval="";
+    getSetting(SETTINGS_ID::SHOW_PDF_AFTER_EXPORT, settingval, settingFound);
+    bool showpdfAfterExport=false;
+
+    if(settingFound)
+        showpdfAfterExport = (settingval=="true");
+
+    emit showPdfAfterExportChanged(showpdfAfterExport);
 }
 
 
@@ -226,6 +238,16 @@ void SettingsHandler::showSettingsDialog(QWidget *parentView)
     sedi->setAutoSaveTimeout(settingValue);
 
 
+    //Autosave enabled
+    settingVal = "";
+    getSetting(SETTINGS_ID::SHOW_PDF_AFTER_EXPORT, settingVal, settingFound);
+    if(settingFound)
+        sedi->setShowPdfAfterExport((settingVal=="true"));
+    else
+        sedi->setShowPdfAfterExport(false);
+
+
+
 
 
     //show the Dialog
@@ -250,6 +272,12 @@ void SettingsHandler::showSettingsDialog(QWidget *parentView)
             setSetting(SETTINGS_ID::AUTOSAVE_ENABLE, "false");
 
         setSetting(SETTINGS_ID::AUTOSAVE_TIMEOUT, QString::number(sedi->getAutoSaveTimeout()));
+
+
+        if(sedi->getShowPdfAfterExport())
+            setSetting(SETTINGS_ID::SHOW_PDF_AFTER_EXPORT, "true");
+        else
+            setSetting(SETTINGS_ID::SHOW_PDF_AFTER_EXPORT, "false");
 
 
         //update gui / whole Application

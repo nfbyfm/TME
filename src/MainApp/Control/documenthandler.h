@@ -15,12 +15,13 @@
 #include <QMimeDatabase>
 #include <QMimeType>
 #include <QXmlStreamReader>
+#include <QProcess>
 
 #include <Model/Math/mathmodel.h>
 #include <Control/FaultHandler/errormessage.h>
 
 /**
- * @brief calss for handling all the documents
+ * @brief calls for handling all the documents
  *
  */
 class DocumentHandler : public QObject
@@ -58,6 +59,12 @@ private:
     QTimer *autoSaveTimer;
     bool autoSaveIsEnabled;
     /** @}*/
+
+    /**
+     * @brief setting which allows the direct show of the pdf after the export is done
+     *
+     */
+    bool showpdfAfterExport;
 
     /**
      * @brief main fucntions for saving and opening files
@@ -187,6 +194,12 @@ public slots:
 
     //void recieveListOfFormulas(QStringList *formList);
     //void recieveListOfVariables(QStringList *variaList);
+
+    /**
+     * @brief setting for showing the pdf after export has changed
+     *
+     */
+    void showPdfAfterExportChanged(bool showPdf);
 
 private slots:
     /**

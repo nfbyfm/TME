@@ -43,7 +43,26 @@ double SettingsDialog::getAutoSaveTimeout()
     return ui->doubleSpinBoxAutosaveMinutes->value();
 }
 
+bool SettingsDialog::getShowPdfAfterExport()
+{
+    return ui->checkBoxShowPdfAfterExport->isChecked();
+}
 
+
+
+
+
+
+
+
+
+
+
+
+void SettingsDialog::setShowPdfAfterExport(bool showPdf)
+{
+    ui->checkBoxShowPdfAfterExport->setChecked(showPdf);
+}
 
 
 void SettingsDialog::setStyleSheetEntries(QStringList entries)
@@ -77,3 +96,6 @@ void SettingsDialog::setAutoSaveTimeout(double value)
 {
     ui->doubleSpinBoxAutosaveMinutes->setValue(value);
 }
+
+
+

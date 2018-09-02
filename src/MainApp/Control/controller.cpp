@@ -117,6 +117,7 @@ void Controller::connect()
 
     //SettingsHandler -> DocumentHandler
     QObject::connect(sHandler, SIGNAL(autosaveChanged(bool,double)), docHandler, SLOT(autosaveChanged(bool,double)));
+    QObject::connect(sHandler, SIGNAL(showPdfAfterExportChanged(bool)), docHandler, SLOT(showPdfAfterExportChanged(bool)));
 
     //SettingsHandler -> Controller
     QObject::connect(sHandler, SIGNAL(changeLanguage(QString)), this, SLOT(languageChanged(QString)));
