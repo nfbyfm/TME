@@ -285,7 +285,7 @@ bool DocumentHandler::saveFile(QStringList * formulaList)
 
     if (fileName.isEmpty())
         return saveFileAs(formulaList);
-    if (fileName.startsWith(QStringLiteral(":/")) || fileName == "untitled")
+    if (fileName.startsWith(QStringLiteral(":/")) || fileName == tr("untitled"))
         return saveFileAs(formulaList);
 
     QString formulas = "";

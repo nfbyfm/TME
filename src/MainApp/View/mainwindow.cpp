@@ -34,7 +34,6 @@
  *                                          struct for properties, -> use for Signals / Slots
  *                                          set-Functions for/from documentHandler
  *                                          default-Settings when creating new document
- *                      save: untitled -> show save-as-dialog
  *
  * 6) Edit:             search-function
  *                      search- & replace-function
