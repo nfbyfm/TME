@@ -57,8 +57,19 @@ private:
      *
      */
     void connect();
+
+
+    /**
+     * @brief function for simplifying a single formula
+     *
+     */
     void simplifyEquations(QList<MFFormula *> *mfFormulaList);
 
+    /**
+     * @brief function for connecting lexer, parser, model, ...
+     *
+     */
+    void simplifyUnsolvedEquations(QList<MFormula *> mFormulaList);
 
     /**
      * @brief function for finding formulas and similar math-expressions in the given text

@@ -190,52 +190,6 @@ void MathEngine::startSolver(QStringList *formulasFromModel)
     }
 }
 
-//simplify equations
-void MathEngine::simplifyEquations(QList<MFFormula *> *mfFormulaList)
-{
-    if(mfFormulaList!=nullptr)
-    {
-        //simplify each formula
-        int i= 0;
-        while( i< mfFormulaList->count())
-        {
-            mfFormulaList->at(i)->simplify();
-            if(mfFormulaList->at(i)->getNumberOfVariables()<=0)
-            {
-                //formula is invalid
-                //qDebug()<<"Mathengine: simplifier: found Formula that is invalid / has no Variables in it after simplification.";
-                MFormula *mVal = qobject_cast<MFormula *>(mfFormulaList->at(i)->parent());
-                if(mVal!=nullptr)
-                {
-                    //qDebug()<<"Mathengine: simplifier: set formula to unsolvable:" << mVal->toString();
-                    mVal->setSolvable(false);
-                    mfFormulaList->removeAt(i);
-                    emit sendError(new ErrorMessage(this,ERROR_ID::MATHENGINE_NoVariableInForumla,mVal));
-                    qDebug()<<"removed MFFormula at index " << i;
-                    //i=i-1;
-                }
-                else
-                {
-                    qDebug()<<"Mathengine: simplifier: Invalid Formula couldn't be cast / set to invalid!!";
-                    i++;
-                }
-            }
-            else
-                i++;
-            //qDebug()<<i << " of " << mfFormulaList->count();
-        }
-        qDebug()<<"Solver: simplifyEquations done";
-        for(int u =0; u< mfFormulaList->count();u++)
-        {
-            qDebug()<<mfFormulaList->at(u)->getSimplifiedFormulaString();
-        }
-    }
-    else
-    {
-        qDebug()<<"Error Solver: simplifyEquations: recieved List of Parts-Formulas is empty (nullptr).";
-    }
-
-}
 
 
 
@@ -261,11 +215,153 @@ void MathEngine::recieveMathDataFromParser(QList<MFormula*> formulaList, QList<M
 
     mSolver->startSolving(mfFormulaList);
 
+    //run simplification and simple solver again
+    simplifyUnsolvedEquations(formulaList);
 
+    /*
+    qDebug()<<"after simplifying again:";
+    //just for debugging: show list of unsolvable equations again
+    for(int i=0; i< formulaList.count(); i++)
+    {
+        if(formulaList.at(i)->getIsSolved()==false)
+            qDebug()<<"unsolved equation: " + formulaList.at(i)->toString();
+    }
+    */
 
     emit sendMathData(formulaList,variableList);
     emit showErrorList();
     emit solverDone();
+}
+
+//simplify equations
+void MathEngine::simplifyEquations(QList<MFFormula *> *mfFormulaList)
+{
+    if(mfFormulaList!=nullptr)
+    {
+        //simplify each formula
+        int i= 0;
+        while( i< mfFormulaList->count())
+        {
+            mfFormulaList->at(i)->simplify();
+
+            if(mfFormulaList->at(i)->getNumberOfVariables()<=0)
+            {
+                //formula is invalid
+                //qDebug()<<"Mathengine: simplifier: found Formula that is invalid / has no Variables in it after simplification.";
+                MFormula *mVal = qobject_cast<MFormula *>(mfFormulaList->at(i)->parent());
+                if(mVal!=nullptr)
+                {
+                    //qDebug()<<"Mathengine: simplifier: set formula to unsolvable:" << mVal->toString();
+                    mVal->setSolvable(false);
+                    mfFormulaList->removeAt(i);
+                    emit sendError(new ErrorMessage(this,ERROR_ID::MATHENGINE_NoVariableInForumla,mVal));
+                    qDebug()<<"removed MFFormula at index " << i;
+                    //i=i-1;
+                }
+                else
+                {
+                    qDebug()<<"Mathengine: simplifier: Invalid Formula couldn't be cast / set to invalid!!";
+                    i++;
+                }
+            }
+            else
+                i++;
+            //qDebug()<<i << " of " << mfFormulaList->count();
+        }
+        /*
+        qDebug()<<"Solver: simplifyEquations done";
+        for(int u =0; u< mfFormulaList->count();u++)
+        {
+            qDebug()<<mfFormulaList->at(u)->getSimplifiedFormulaString();
+        }
+        */
+    }
+    else
+    {
+        qDebug()<<"Error Solver: simplifyEquations: recieved List of Parts-Formulas is empty (nullptr).";
+    }
+
+}
+
+//simplify unsolved equations
+void MathEngine::simplifyUnsolvedEquations(QList<MFormula *> mFormulaList)
+{
+    if(!mFormulaList.isEmpty())
+    {
+        qDebug()<<"Solve unsolved formulas";
+
+        for(int i=0; i< mFormulaList.count(); i++)
+        {
+            if(mFormulaList.at(i)->getIsSolved()==false)
+            {
+                //check if formula is really unsolved
+
+                if(!mFormulaList.at(i)->getTokenVariables().isEmpty())
+                {
+                    QList<MToken *> tokenList = mFormulaList.at(i)->getTokenList();
+                    int noOfunsolvedVariables =0;
+                    QList<MToken *> newFormulaTokenList;
+                    for(int u =0; u<tokenList.count();u++)
+                    {
+                        //check each token: if it is a unsolved variable add 1 to counter
+                        //otherwise: plug in the numeric value
+                        if(tokenList.at(u)->getType()==MTokenType::VARIABLE)
+                        {
+                            //try to get Varaible
+                            MVariable *tmpVar = qobject_cast<MVariable*>(tokenList.at(u)->getMObject());
+                            if(tmpVar!=nullptr)
+                            {
+                                if(tmpVar->getSolved())
+                                {
+                                    //add new numeric token to newFormulaList
+                                    MToken *newNumToken = new MToken(tokenList.at(u),QString::number(tmpVar->getNumericValue()),MTokenType::NUMBER);
+                                    newFormulaTokenList.append(newNumToken);
+                                }
+                                else
+                                {
+                                    //add to list, up counter
+                                    noOfunsolvedVariables++;
+                                    newFormulaTokenList.append(tokenList.at(u));
+                                }
+                            }
+                            else
+                            {
+                                newFormulaTokenList.append(tokenList.at(u));
+                                qDebug()<<"Mathengine: simplifyUnsolvedEquations: Error casting MToken-parent to MVaraible.";
+                            }
+                        }
+                        else
+                        {
+                            newFormulaTokenList.append(tokenList.at(u));
+                        }
+                    }
+
+                    if(noOfunsolvedVariables ==1)
+                    {
+                        //solve newFormulaTokenList -> write
+                        qDebug()<<"found formula to solve: " + mFormulaList.at(i)->toString();
+                    }
+                    else
+                    {
+                        //if number of unsolved variables equals one, solve the equation
+                        qDebug()<<"unsolved equation: " + mFormulaList.at(i)->toString();
+                        if(noOfunsolvedVariables==0)
+                            mFormulaList.at(i)->setIsSolved(true);
+                    }
+                }
+
+            }
+        }
+
+
+
+
+
+    }
+    else
+    {
+        qDebug()<<"Error Solver: simplifyEquations: recieved List of Parts-Formulas is empty (nullptr).";
+    }
 }
 
 
