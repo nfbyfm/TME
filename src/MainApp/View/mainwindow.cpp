@@ -22,7 +22,7 @@
 
 
 /*
- * 1) Testing: write mor unittests
+ * 1) Testing: write more unittests
  * 2) update Doxygen-Documentation
  * 3) Welcome-Document:   short How-To-Document, add to release *
  * 4) Text:             Spellchecking:      http://wiki.qt.io/Spell-Checking-with-Hunspell
@@ -42,6 +42,7 @@
  * 8) rendern von Mathematik-Formeln -> als Bild in html-Dokument einfügen?
  * 9) use of Ribbon for menu
  * 10) Mathjax with qt quick?
+ * 11) mathengine: after first solver-run, run simplification and solver again (recursive) until each formula is really not solvable anymore
  */
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),  ui(new Ui::MainWindow)

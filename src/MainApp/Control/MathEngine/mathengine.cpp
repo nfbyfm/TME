@@ -340,6 +340,11 @@ void MathEngine::simplifyUnsolvedEquations(QList<MFormula *> mFormulaList)
                     {
                         //solve newFormulaTokenList -> write
                         qDebug()<<"found formula to solve: " + mFormulaList.at(i)->toString();
+
+
+
+//****************************************************************************************//
+
                     }
                     else
                     {
