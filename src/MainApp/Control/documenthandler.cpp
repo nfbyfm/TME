@@ -605,12 +605,12 @@ void DocumentHandler::setCurrentFileName(const QString &fiName)
         for(int k= 0; k< formulaList.count(); k++)
         {
             searchString = "$link(" + formulaList.at(k)->toString() + ",as_is)$";
-            replaceString = formulaList.at(k)->toString();
+            replaceString = formulaList.at(k)->toString().replace("="," = ");
 
             newHTMLContent.replace(searchString,replaceString,Qt::CaseInsensitive);
 
             searchString = "$link(" + formulaList.at(k)->toString() + ",with_values)$";
-            replaceString =  formulaToStringWithPluggedInValues(formulaList.at(k));
+            replaceString =  formulaToStringWithPluggedInValues(formulaList.at(k)).replace("="," = ");
 
             newHTMLContent.replace(searchString,replaceString,Qt::CaseInsensitive);
         }
