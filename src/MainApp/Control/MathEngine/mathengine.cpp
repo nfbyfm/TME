@@ -215,14 +215,24 @@ void MathEngine::recieveMathDataFromParser(QList<MFormula*> formulaList, QList<M
     //parser: creates list of formulas and variables
     mMathModel->recieveMathData(formulaList,variableList);
 
-    //plug in varaible-values of those that have already been solved, ignore solved formulas
+    int numberOfUnsolvedFormulas=1;
 
-    //create List of MFFormulas (solvable Formulas-model) out of the vetted formulaList
-    QList<MFFormula *> *mfFormulaList = mPreSolver->getPartitionedFormulasList(formulaList);
+    while(numberOfUnsolvedFormulas >0)
+    {
+        //plug in varaible-values of those that have already been solved, ignore solved formulas
 
+        //create List of MFFormulas (solvable Formulas-model) out of the vetted formulaList
+        QList<MFFormula *> *mfFormulaList = mPreSolver->getPartitionedFormulasList(formulaList);
+        numberOfUnsolvedFormulas=mfFormulaList->count();
 
-    qDebug()<<"Mathengine: simplifing Equations done. Calling solver";
-    mSolver->startSolving(mfFormulaList);
+        if (numberOfUnsolvedFormulas >0)
+        {
+            qDebug()<<"Mathengine: simplifing Equations done. Calling solver";
+            mSolver->startSolving(mfFormulaList);
+        }
+
+    }
+
 
 
     emit sendMathData(formulaList,variableList);

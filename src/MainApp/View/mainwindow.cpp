@@ -34,6 +34,8 @@
  *                                          struct for properties, -> use for Signals / Slots
  *                                          set-Functions for/from documentHandler
  *                                          default-Settings when creating new document
+ *                      print / export:     use distinct id's for formulas and id's!! link gets lost if a formula gets changed in the editor
+ *                                          ask user what to do with deleted but linked formulas and variables -> write as plain text for example?
  *
  * 6) Edit:             search-function
  *                      search- & replace-function
@@ -42,7 +44,7 @@
  * 8) rendern von Mathematik-Formeln -> als Bild in html-Dokument einfügen?
  * 9) use of Ribbon for menu
  * 10) Mathjax with qt quick?
- * 11) mathengine: after first solver-run, run simplification and solver again (recursive) until each formula is really not solvable anymore
+ * 11)
  */
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),  ui(new Ui::MainWindow)

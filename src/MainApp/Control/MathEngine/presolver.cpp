@@ -18,6 +18,7 @@ QList<MFFormula *> * PreSolver::getPartitionedFormulasList(QList <MFormula *> f_
     }
 
     QList <MFormula *> f_List = updateUnsolvedEquations(f_origList);
+
     qDebug()<<"";
     qDebug()<< "FormulaList after update: ";
     for(int i =0; i<f_List.count();i++)
@@ -232,6 +233,7 @@ QList<MFormula *> PreSolver::updateUnsolvedEquations(QList<MFormula *> mFormulaL
 
     if(!mFormulaList.isEmpty())
     {
+        qDebug()<<"";
         qDebug()<<"find and update unsolved formulas";
 
         for(int i=0; i< mFormulaList.count(); i++)
@@ -290,15 +292,16 @@ QList<MFormula *> PreSolver::updateUnsolvedEquations(QList<MFormula *> mFormulaL
                         newFormula->setTokenList(newFormulaTokenList);
                         newFormula->setSolvable(true);
                         retVal.append(newFormula);
-//****************************************************************************************//
-
                     }
                     else
                     {
                         //if number of unsolved variables equals one, solve the equation
                         qDebug()<<"unsolved equation: " + mFormulaList.at(i)->toString();
                         if(noOfunsolvedVariables==0)
+                        {
+                            mFormulaList.at(i)->setSolvable(true);
                             mFormulaList.at(i)->setIsSolved(true);
+                        }
                         retVal.append(mFormulaList.at(i));
                     }
                 }
@@ -310,7 +313,8 @@ QList<MFormula *> PreSolver::updateUnsolvedEquations(QList<MFormula *> mFormulaL
             }
             else
             {
-                retVal.append(mFormulaList.at(i));
+                //these formulas have already been solved!!
+                //retVal.append(mFormulaList.at(i));
             }
         }
 
