@@ -31,7 +31,7 @@ void MathEngine::connect()
     //Connect Engine to Parser
     QObject::connect(this, SIGNAL(startParser(QList<QList<MToken*> >)), mParser, SLOT(startParsing(QList<QList<MToken*> >)));     //
     QObject::connect(mParser, SIGNAL(sendError(ErrorMessage*)), this, SLOT(recieveError(ErrorMessage*)));      //Handling of Error-Messages
-    QObject::connect(mParser, SIGNAL(sendMathData(QList<MFormula*>,QList<MVariable*>, QList <MFFormula *> *)), this, SLOT(recieveMathDataFromParser(QList<MFormula*>,QList<MVariable*>, QList <MFFormula *> *)));      //
+    QObject::connect(mParser, SIGNAL(sendMathData(QList<MFormula*>,QList<MVariable*>)), this, SLOT(recieveMathDataFromParser(QList<MFormula*>,QList<MVariable*>)));      //
 
     QObject::connect(mSolver, SIGNAL(sendError(ErrorMessage*)), this, SLOT(recieveError(ErrorMessage*)));
 }
@@ -206,19 +206,27 @@ void MathEngine::recieveTokenizedFormulas(QList<QList<MToken *> > tf_list)
 
 
 
-void MathEngine::recieveMathDataFromParser(QList<MFormula*> formulaList, QList<MVariable*> variableList, QList<MFFormula *> *mfFormulaList)
+void MathEngine::recieveMathDataFromParser(QList<MFormula*> formulaList, QList<MVariable*> variableList)
 {
+    //parser: creates list of formulas and variables
     mMathModel->recieveMathData(formulaList,variableList);
-    qDebug()<<"Solver: calling simplifyEquations";
+
+    //plug in varaible-values of those that have already been solved, ignore solved formulas
+
+    //create List of MFFormulas (solvable Formulas-model) out of the vetted formulaList
+    QList<MFFormula *> *mfFormulaList = createPartitionedFormulasList(formulaList);
+
+    qDebug()<<"Mathengine: calling simplifyEquations";
     simplifyEquations(mfFormulaList);
-    qDebug()<<"Solver: simplifing Equations done. Calling translator";
+
+    qDebug()<<"Mathengine: simplifing Equations done. Calling solver";
 
     mSolver->startSolving(mfFormulaList);
 
     //run simplification and simple solver again
     simplifyUnsolvedEquations(formulaList);
 
-    /*
+    qDebug()<<"";
     qDebug()<<"after simplifying again:";
     //just for debugging: show list of unsolvable equations again
     for(int i=0; i< formulaList.count(); i++)
@@ -226,7 +234,6 @@ void MathEngine::recieveMathDataFromParser(QList<MFormula*> formulaList, QList<M
         if(formulaList.at(i)->getIsSolved()==false)
             qDebug()<<"unsolved equation: " + formulaList.at(i)->toString();
     }
-    */
 
     emit sendMathData(formulaList,variableList);
     emit showErrorList();
@@ -487,4 +494,233 @@ bool MathEngine::inList(QStringList *list, QString value)
     }
 
     return result;
+}
+
+
+
+
+QList<MFFormula *> *MathEngine::createPartitionedFormulasList(QList <MFormula *> f_List)
+{
+    //create standardized List for the Translator (a_n*x_n + a_n-1 * x_n-1 + .... + a_0 = 0)
+    QList <MFFormula *> * partitionedFormulaList = new QList <MFFormula *>();
+
+    for(int i = 0; i< f_List.count(); i++)
+    {
+        if(f_List.at(i)->getSolvable() && !f_List.at(i)->getIsSolved())
+        {
+
+            //MFormula *tempFormula = new MFormula(nullptr);
+            QList <MFPart *> * partsList = new QList<MFPart *>();
+            QList <MToken * > origTokenList = f_List.at(i)->getTokenList();
+            MFPart *tmpPart = new MFPart();
+            bool negatePart = false;
+
+            for(int k =0; k < origTokenList.count(); k++)
+            {
+                //
+
+
+                QString tokenVal = origTokenList.at(k)->getValue();
+                tmpPart->setOrigFormula(f_List.at(i));
+                switch(origTokenList.at(k)->getType())
+                {
+                    case MTokenType::CONSTANT:
+                        //replace by numeric value
+                        tmpPart->setNegateElements(negatePart);
+                        tmpPart->appendTokenList(constantTokenToNumeric(tokenVal));
+                        break;
+
+                    case MTokenType::NUMBER:
+                        tmpPart->setNegateElements(negatePart);
+                        //don't use original because number will get changed
+                        //check if prevoious element in tempList is Operator "/"
+
+                        numberTokenReciproque(origTokenList.at(k), tmpPart);
+                        break;
+                    case MTokenType::VARIABLE:
+                        //check if Variable has already been solved -> replace by Numeric-Value Token !!!
+                        tmpPart->setNegateElements(negatePart);
+                        tmpPart->appendTokenList(variableTokenNumeric(origTokenList.at(k)));
+                        break;
+                    case MTokenType::COMPARATOR:
+                        if(tokenVal=="=")
+                        {
+                            tmpPart->setNegateElements(negatePart);
+                            partsList->append(tmpPart);
+                            //qDebug()<<"= Sign found. Adding Part to List: " << tmpPart->tokenListToString();
+                            tmpPart = new MFPart();
+                            negatePart=true;
+                        }
+                        else
+                        {
+                            f_List.at(i)->setSolvable(false);
+                            k = origTokenList.count();
+                        }
+                        break;
+                    case MTokenType::OPERATOR:
+                        if(tokenVal == "+")
+                        {
+                            tmpPart->setNegateElements(negatePart);
+                            partsList->append(tmpPart);
+                            //qDebug()<<"+ Sign found. Adding Part to List: " << tmpPart->tokenListToString();
+                            tmpPart = new MFPart();
+
+                        }
+                        else if (tokenVal=="-")
+                        {
+                            tmpPart->setNegateElements(negatePart);
+                            //
+                            if(tmpPart->getTokenList().count()>0)
+                                partsList->append(tmpPart);
+                            //qDebug()<<"- Sign found. Adding Part to List: " << tmpPart->tokenListToString();
+                            tmpPart = new MFPart();
+                            //tmpPart->appendTokenList(origTokenList.at(k));
+                            tmpPart->appendTokenList(new MToken(nullptr,"-1",MTokenType::NUMBER));
+                            tmpPart->appendTokenList(new MToken(nullptr,"*",MTokenType::OPERATOR));
+
+                        }
+                        else if (tokenVal == "*")
+                        {
+                            tmpPart->appendTokenList(origTokenList.at(k));
+                        }
+                        else if(tokenVal == "/")
+                        {
+                            tmpPart->appendTokenList(origTokenList.at(k));
+                        }
+                        else if(tokenVal =="^")
+                        {
+                            f_List.at(i)->setSolvable(false);
+                            k = origTokenList.count();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            //add the last element
+
+            if(tmpPart->getTokenList().count()>0 && !((tmpPart->getTokenList().count()==2) && (tmpPart->getTokenList().at(0)->getValue()=="-1") && (tmpPart->getTokenList().at(1)->getValue()=="*") ))
+                partsList->append(tmpPart);
+
+            /*
+            qDebug()<<"Formula: " + f_List.at(i)->toString();
+
+            QString newLine = "Formula from parts: ";
+            for(int u = 0; u < partsList->count(); u++)
+                newLine += partsList->at(u)->tokenListToString() + " + ";
+            newLine = newLine.remove(newLine.lastIndexOf("+"),2);
+            newLine += "= 0";
+
+            qDebug()<<newLine;
+            */
+
+            //check for errors
+            bool errorFound=false;
+            for(int u = 0; u < partsList->count(); u++)
+            {
+                if(partsList->at(u)->divisionError())
+                {
+                    //emit Error
+                    f_List.at(i)->setSolvable(false);
+                    qDebug()<<"Error in equation " << f_List.at(i)->toString() << ", Part: " << partsList->at(u)->tokenListToString() << ": Division by variable found.";
+                    errorFound = true;
+                }
+                if(partsList->at(u)->multiplError())
+                {
+                    //emit Error
+                    f_List.at(i)->setSolvable(false);
+                    qDebug()<<"Error in equation " << f_List.at(i)->toString() << ", Part: " << partsList->at(u)->tokenListToString() << ": Multiple variables get multiplied.";
+                    errorFound = true;
+                }
+            }
+
+            //if no errors found in any of the Formula-Parts -> add list to Mainlist
+            if(!errorFound)
+            {
+                MFFormula *newFormula = new MFFormula(f_List.at(i));
+                newFormula->setFormulaParts(partsList);
+                partitionedFormulaList->append(newFormula);
+            }
+
+        }
+    }
+    return partitionedFormulaList;
+}
+
+//replaces a Constant-Token with a Number-Token
+MToken * MathEngine::constantTokenToNumeric(QString constValue)
+{
+    MToken *newToken = new MToken(nullptr,"const", MTokenType::NUMBER);
+    if(constValue.contains("pi",Qt::CaseInsensitive))
+    {
+        newToken->setValue(QString::number(M_PI));
+    }
+    else
+    {
+        //unknown constant
+        newToken->setValue(QString::number(1));
+    }
+    return newToken;
+}
+
+//checks if given token is Varaible. Returns Number-Token if varaible has been solved.
+MToken * MathEngine::variableTokenNumeric(MToken* tokenPointer)
+{
+    MToken *retVal = tokenPointer;
+
+    if(tokenPointer != nullptr)
+    {
+        MVariable *mVal = qobject_cast<MVariable *>(tokenPointer->getMObject());
+        if(mVal != nullptr)
+        {
+            if(mVal->getSolved() && !mVal->getOverdetermined())
+            {
+                retVal = new MToken(nullptr, QString::number(mVal->getNumericValue()),MTokenType::NUMBER);
+                //qDebug()<<"replaced a variable "<<mVal->getTextValue()<<" by it's numeric value: " <<mVal->getNumericValue();
+            }
+        }
+    }
+    return retVal;
+}
+
+
+
+
+//checks if a division by number is supposed to take place
+ void MathEngine::numberTokenReciproque(MToken* tokenPointer, MFPart *tmpPart)
+{
+
+
+    if(tokenPointer!=nullptr && tmpPart !=nullptr)
+    {
+        MToken *newElement = new MToken(tokenPointer,tokenPointer->getValue(),MTokenType::NUMBER);
+
+        int numberOfElements = tmpPart->getTokenList().count();
+        if(numberOfElements > 0)
+            if(tmpPart->getTokenList().at(numberOfElements-1)->getType()==MTokenType::OPERATOR)
+                if(tmpPart->getTokenList().at(numberOfElements-1)->getValue()=="/")
+                {
+                    //get double-value and calculate reciproque value
+                    double value=-1;
+                    bool toDoubleSuccess = false;
+                    value = newElement->getValue().toDouble(&toDoubleSuccess);//tmpPart->getTokenList().at(numberOfElements)->getValue().toDouble(&toDoubleSuccess);
+
+                    if(toDoubleSuccess)
+                    {
+                        //
+                        //tmpPart->getTokenList().removeLast();
+                        tmpPart->removeLastToken();
+                        tmpPart->appendTokenList(new MToken(nullptr, "*", MTokenType::OPERATOR));
+                        newElement = new MToken(tokenPointer,QString::number(1/value),MTokenType::NUMBER);
+                        qDebug()<<"Parser: division by Number detected. turned into multiplication." << tmpPart->tokenListToString();
+                    }
+                    else
+                        qDebug()<<"Parser: division by Number detected. could not turn into mulitplication.";
+
+                }
+
+        tmpPart->appendTokenList(newElement);
+        qDebug()<<"Parser: numberTokenReciproque: " << tmpPart->tokenListToString();
+
+    }
 }

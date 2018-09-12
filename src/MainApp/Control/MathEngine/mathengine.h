@@ -91,6 +91,34 @@ private:
      */
     bool inList(QStringList *list, QString value);
 
+    /**
+     * @brief
+     *
+     */
+    QList <MFFormula *> * createPartitionedFormulasList(QList <MFormula *> f_List);
+
+
+    /**
+     * @brief helper-function for converting a MToken of Type::Constant into a MToken of Type::numeric
+     *
+     */
+    MToken *constantTokenToNumeric(QString constValue);
+
+    /**
+     * @brief helper-function for converting a MToken of Type::Variable into a MToken of Type::numeric
+     *
+     */
+    MToken *variableTokenNumeric(MToken* tokenPoinster);
+
+    /**
+     * @brief helper-function for checking if a division by number is supposed to happen. ALters MFPart accordingly.
+     *
+     */
+    void numberTokenReciproque(MToken* tokenPointer, MFPart *tmpPart);
+
+
+
+
 signals:
     /**
      * @brief function for sending errormessages to the faulthandler
@@ -154,7 +182,7 @@ public slots:
      * @brief function for recieving data from the parser
      *
      */
-    void recieveMathDataFromParser(QList<MFormula*> formulaList, QList<MVariable*> variableList, QList<MFFormula *> *mfFormulaList);
+    void recieveMathDataFromParser(QList<MFormula*> formulaList, QList<MVariable*> variableList);
 
     /**
      * @brief importatnt slot for setting the mathmodel. connect to documenthandler or similar.

@@ -42,23 +42,7 @@ private:
     const double Tolerance = 0.001; //allowed deviation between two double Values in order to be considered the same
 
 
-    /**
-     * @brief helper-function for converting a MToken of Type::Constant into a MToken of Type::numeric
-     *
-     */
-    MToken *constantTokenToNumeric(QString constValue);
 
-    /**
-     * @brief helper-function for converting a MToken of Type::Variable into a MToken of Type::numeric
-     *
-     */
-    MToken *variableTokenNumeric(MToken* tokenPoinster);
-
-    /**
-     * @brief helper-function for checking if a division by number is supposed to happen. ALters MFPart accordingly.
-     *
-     */
-    void numberTokenReciproque(MToken* tokenPointer, MFPart *tmpPart);
 public:
     explicit Parser(QObject *parent = nullptr);
 
@@ -73,7 +57,7 @@ signals:
      * @brief function that gets triggered when calculations are done
      *
      */
-    void sendMathData(QList<MFormula*> formulaList, QList<MVariable*> variableList, QList <MFFormula *> * partitionedFormulasList);
+    void sendMathData(QList<MFormula*> formulaList, QList<MVariable*> variableList);
 
 
 public slots:
