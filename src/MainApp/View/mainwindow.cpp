@@ -36,6 +36,7 @@
  *                                          default-Settings when creating new document
  *                      print / export:     use distinct id's for formulas and id's!! link gets lost if a formula gets changed in the editor
  *                                          ask user what to do with deleted but linked formulas and variables -> write as plain text for example?
+ *                      precision:          set precision when giving out results / linked variablevalues
  *
  * 6) Edit:             search-function
  *                      search- & replace-function
