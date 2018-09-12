@@ -564,6 +564,8 @@ void DocumentHandler::setCurrentFileName(const QString &fiName)
      */
     void DocumentHandler::createPrintDocument()
     {
+        int doublePrecision =3;     //<- make this a setting!!!
+
         QString newHTMLContent = tDocument->toHtml();
 
         /*
@@ -586,7 +588,7 @@ void DocumentHandler::setCurrentFileName(const QString &fiName)
             searchString = "$link(" + variableList.at(i)->getTextValue() + ",value)$";
 
             if(variableList.at(i)->getSolved())
-                replaceString = QString::number(variableList.at(i)->getNumericValue());
+                replaceString = doubleToQString(variableList.at(i)->getNumericValue(),doublePrecision);
             else
                 replaceString = tr("unknown");
 
@@ -594,7 +596,7 @@ void DocumentHandler::setCurrentFileName(const QString &fiName)
 
             searchString = "$link(" + variableList.at(i)->getTextValue() + ",name_eq_value)$";
             if(variableList.at(i)->getSolved())
-                replaceString = variableList.at(i)->getTextValue() + " = " + QString::number(variableList.at(i)->getNumericValue());
+                replaceString = variableList.at(i)->getTextValue() + " = " + doubleToQString(variableList.at(i)->getNumericValue(),doublePrecision);
             else
                 replaceString = variableList.at(i)->getTextValue() + " = " + tr("unknown");
 
@@ -610,7 +612,7 @@ void DocumentHandler::setCurrentFileName(const QString &fiName)
             newHTMLContent.replace(searchString,replaceString,Qt::CaseInsensitive);
 
             searchString = "$link(" + formulaList.at(k)->toString() + ",with_values)$";
-            replaceString =  formulaToStringWithPluggedInValues(formulaList.at(k)).replace("="," = ");
+            replaceString =  formulaToStringWithPluggedInValues(formulaList.at(k),doublePrecision).replace("="," = ");
 
             newHTMLContent.replace(searchString,replaceString,Qt::CaseInsensitive);
         }
@@ -623,7 +625,7 @@ void DocumentHandler::setCurrentFileName(const QString &fiName)
 
     }
 
-    QString DocumentHandler::formulaToStringWithPluggedInValues(MFormula *formula)
+    QString DocumentHandler::formulaToStringWithPluggedInValues(MFormula *formula, int precision)
     {
         QString retVal ="";
         for(int i =0; i< formula->getTokenList().count();i++)
@@ -634,7 +636,7 @@ void DocumentHandler::setCurrentFileName(const QString &fiName)
                 if(tempVaria != nullptr)
                 {
                     if(tempVaria->getSolved())
-                        retVal += QString::number(tempVaria->getNumericValue());
+                        retVal += doubleToQString(tempVaria->getNumericValue(),precision);
                     else
                         retVal += tempVaria->getTextValue();
                 }
@@ -649,6 +651,29 @@ void DocumentHandler::setCurrentFileName(const QString &fiName)
         return retVal;
     }
 
+    QString DocumentHandler::doubleToQString(double value, int precision)
+    {
+        QString retVal=QString::number(value);
+
+        double temp;
+        if(modf(value, &temp) != 0)
+        {
+            //Has fractional part.
+            double tmp = log10(value);
+            int mag = static_cast<int>(tmp);
+            //qDebug()<<"fraction detected: " << value << "  replaced by:" << QString::number(value,'g',precision + mag);
+            return QString::number(value,'g',precision + mag);
+        }
+        /*
+        else
+        {
+            //No fractional part.
+            //qDebug()<<"no fraction detected: " << value;
+            return QString::number(value);
+        }*/
+
+        return retVal;
+    }
 
     void DocumentHandler::showPdfAfterExportChanged(bool showPdf)
     {

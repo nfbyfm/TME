@@ -1,6 +1,7 @@
 #ifndef DOCUMENTHANDLER_H
 #define DOCUMENTHANDLER_H
 
+#include <math.h>
 #include <QObject>
 #include <QFileDialog>
 #include <QTextCodec>
@@ -87,7 +88,17 @@ private:
      */
     void createPrintDocument();
 
-    QString formulaToStringWithPluggedInValues(MFormula *formula);
+    /**
+     * @brief convert a double-value to QString with set precision
+     *
+     */
+    QString doubleToQString(double value, int precision);
+
+    /**
+     * @brief create replacement-string for a formula with values of solved variables
+     *
+     */
+    QString formulaToStringWithPluggedInValues(MFormula *formula, int precision);
 public:
     explicit DocumentHandler(QObject *parent = nullptr);
 
