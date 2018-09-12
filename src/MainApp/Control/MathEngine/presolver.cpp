@@ -7,11 +7,24 @@ PreSolver::PreSolver(QObject *parent) : QObject(parent)
 
 
 
-QList<MFFormula *> * PreSolver::getPartitionedFormulasList(QList <MFormula *> f_List)
+QList<MFFormula *> * PreSolver::getPartitionedFormulasList(QList <MFormula *> f_origList)
 {
     //first: for each formula: plug in varaible-values if possible, set formula 'solvable' anew accordingly
+    qDebug()<<"";
+    qDebug()<< "FormulaList before update: ";
+    for(int i =0; i<f_origList.count();i++)
+    {
+        qDebug()<<f_origList.at(i)->toString() + "      solvable: " + QString::number(f_origList.at(i)->getSolvable()) + "      solved: " + QString::number(f_origList.at(i)->getIsSolved());;
+    }
 
-
+    QList <MFormula *> f_List = updateUnsolvedEquations(f_origList);
+    qDebug()<<"";
+    qDebug()<< "FormulaList after update: ";
+    for(int i =0; i<f_List.count();i++)
+    {
+        qDebug()<<f_List.at(i)->toString() + "      solvable: " + QString::number(f_List.at(i)->getSolvable()) + "      solved: " + QString::number(f_List.at(i)->getIsSolved());
+    }
+    //QList <MFormula *> f_List = f_origList;
 
     //create standardized List for the Translator (a_n*x_n + a_n-1 * x_n-1 + .... + a_0 = 0)
     QList <MFFormula *> * partitionedFormulaList = new QList <MFFormula *>();
@@ -212,12 +225,14 @@ void PreSolver::simplifyEquations(QList<MFFormula *> *mfFormulaList)
 
 }
 
-//simplify unsolved equations
-void PreSolver::simplifyUnsolvedEquations(QList<MFormula *> mFormulaList)
+//update unsolved equations
+QList<MFormula *> PreSolver::updateUnsolvedEquations(QList<MFormula *> mFormulaList)
 {
+    QList<MFormula *> retVal;
+
     if(!mFormulaList.isEmpty())
     {
-        qDebug()<<"Solve unsolved formulas";
+        qDebug()<<"find and update unsolved formulas";
 
         for(int i=0; i< mFormulaList.count(); i++)
         {
@@ -263,6 +278,7 @@ void PreSolver::simplifyUnsolvedEquations(QList<MFormula *> mFormulaList)
                         {
                             newFormulaTokenList.append(tokenList.at(u));
                         }
+
                     }
 
                     if(noOfunsolvedVariables ==1)
@@ -270,8 +286,10 @@ void PreSolver::simplifyUnsolvedEquations(QList<MFormula *> mFormulaList)
                         //solve newFormulaTokenList -> write
                         qDebug()<<"found formula to solve: " + mFormulaList.at(i)->toString();
 
-
-
+                        MFormula *newFormula = new MFormula(nullptr);
+                        newFormula->setTokenList(newFormulaTokenList);
+                        newFormula->setSolvable(true);
+                        retVal.append(newFormula);
 //****************************************************************************************//
 
                     }
@@ -281,9 +299,18 @@ void PreSolver::simplifyUnsolvedEquations(QList<MFormula *> mFormulaList)
                         qDebug()<<"unsolved equation: " + mFormulaList.at(i)->toString();
                         if(noOfunsolvedVariables==0)
                             mFormulaList.at(i)->setIsSolved(true);
+                        retVal.append(mFormulaList.at(i));
                     }
                 }
+                else
+                {
+                    retVal.append(mFormulaList.at(i));
+                }
 
+            }
+            else
+            {
+                retVal.append(mFormulaList.at(i));
             }
         }
 
@@ -294,8 +321,10 @@ void PreSolver::simplifyUnsolvedEquations(QList<MFormula *> mFormulaList)
     }
     else
     {
-        qDebug()<<"Error Solver: simplifyEquations: recieved List of Parts-Formulas is empty (nullptr).";
+        qDebug()<<"Error Presolver: updateEquations: recieved List of Parts-Formulas is empty (nullptr).";
     }
+
+    return retVal;
 }
 
 

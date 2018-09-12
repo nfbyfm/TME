@@ -41,7 +41,7 @@ private:
      * @brief function for connecting lexer, parser, model, ...
      *
      */
-    void simplifyUnsolvedEquations(QList<MFormula *> mFormulaList);
+    QList<MFormula *> updateUnsolvedEquations(QList<MFormula *> mFormulaList);
 
 public:
     explicit PreSolver(QObject *parent = nullptr);
@@ -50,7 +50,7 @@ public:
      * @brief
      *
      */
-    QList <MFFormula *> * getPartitionedFormulasList(QList <MFormula *> f_List);
+    QList <MFFormula *> * getPartitionedFormulasList(QList <MFormula *> f_origList);
 
 
 signals:

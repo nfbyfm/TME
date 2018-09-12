@@ -90,7 +90,7 @@ void MFPart::removeLastToken()
                 result += "-(";
 
             for(int u =0; u <tokenList.count(); u++)
-                result += tokenList.at(u)->getValue();
+                result += tokenList.at(u)->getValue() + " ";
 
             if(negateElements)
                 result += ")";
