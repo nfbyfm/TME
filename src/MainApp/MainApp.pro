@@ -52,6 +52,7 @@ HEADERS += \
     Control/MathEngine/lexer.h \
     Control/MathEngine/parser.h \
     Control/MathEngine/msolver.h \ 
+    Control/MathEngine/presolver.h \
 #Model
     Model/mainmodel.h \
 #Math-Model
@@ -86,6 +87,7 @@ HEADERS += \
 
 
 
+
 SOURCES += \
         main.cpp \
 #Views
@@ -113,6 +115,7 @@ SOURCES += \
     Control/MathEngine/lexer.cpp \
     Control/MathEngine/parser.cpp \
     Control/MathEngine/msolver.cpp \
+    Control/MathEngine/presolver.cpp \
 #Model
 #Math-Model
     Model/Math/mathmodel.cpp \
@@ -136,6 +139,7 @@ SOURCES += \
     Libraries/alglib_3_14_0/solvers.cpp \
     Libraries/alglib_3_14_0/specialfunctions.cpp \
     Libraries/alglib_3_14_0/statistics.cpp
+
 
 
 

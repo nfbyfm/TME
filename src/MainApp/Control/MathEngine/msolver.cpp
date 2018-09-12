@@ -59,7 +59,7 @@ bool MSolver::startSolving(QList <MFFormula*> *formulaList)
         int numberOfVariables = variableList->count();
         int numberOfEquations = formulaList->count();
 
-        qDebug()<<"Mathtranslator: number of Equations: " << numberOfEquations << "  number of variables: " << numberOfVariables;
+        qDebug()<<"MathSolver: number of Equations: " << numberOfEquations << "  number of variables: " << numberOfVariables;
 
         if(numberOfEquations<numberOfVariables)
         {
@@ -128,7 +128,7 @@ bool MSolver::startSolving(QList <MFFormula*> *formulaList)
                                 variableList->append(tmpVal->second);
                                 aMatrix(row,variableList->count()-1) = tmpVal->first;
                                 //setcoeficient
-                                qDebug()<<"MathTranslator: Variable "<< tmpVal->second->getTextValue() << "not in List yet. Should not be possible!!!";
+                                qDebug()<<"MathSolver: Variable "<< tmpVal->second->getTextValue() << "not in List yet. Should not be possible!!!";
                             }
                         }
                         else
@@ -140,11 +140,12 @@ bool MSolver::startSolving(QList <MFFormula*> *formulaList)
                 }
             }
 
+            /*
             qDebug()<<"MathSolver: Ax = b is to be solved:";
             qDebug()<<"A = " << QString::fromStdString(aMatrix.tostring(1));
             qDebug()<<"b = " << QString::fromStdString(bVector.tostring(1));
             qDebug()<<"x = " << QString::fromStdString(xVector.tostring(2));
-
+            */
 
             alglib::ae_int_t info;
             alglib::densesolverreport report;
@@ -152,12 +153,12 @@ bool MSolver::startSolving(QList <MFFormula*> *formulaList)
             //run the solver
             alglib::rmatrixsolve(aMatrix,iN,bVector,info,report,xVector,alglib::xdefault);
 
-
+            /*
             qDebug()<<"\nsMathSolver: Ax = b has been solved.";
             qDebug()<<"A = " << QString::fromStdString(aMatrix.tostring(1));
             qDebug()<<"b = " << QString::fromStdString(bVector.tostring(1));
             qDebug()<<"x = " << QString::fromStdString(xVector.tostring(2));
-
+            */
 
             // reunite Solution with Variables
             qDebug()<<"MathSolver: write Values into Variables. Length of x-Vector: " << xVector.length();
