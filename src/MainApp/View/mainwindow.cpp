@@ -52,18 +52,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),  ui(new Ui::MainW
 {
     ui->setupUi(this);
 
-    //non-essential functions / not needed / wanted for first Version
-    /*
-    ui->menu_Document->setEnabled(false);
-    ui->menu_Document->setVisible(false);
-    ui->action_properties->setEnabled(false);
-    ui->action_properties->setVisible(false);
-    */
-
-    ui->actionsearch->setEnabled(false);
-    ui->actionsearch->setVisible(false);
-    ui->actionsearch_and_replace->setEnabled(false);
-    ui->actionsearch_and_replace->setVisible(false);
 
     pageEdit = new PagesTextEdit(this);
     QTextDocument* doc = new QTextDocument;
@@ -73,8 +61,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),  ui(new Ui::MainW
     pageEdit->setPageFormat(QPageSize::A4);
     pageEdit->setPageMargins(QMarginsF(15, 15, 15, 15));
     pageEdit->setUsePageMode(true);
-    pageEdit->setShowPageNumbers(false);
-    //pageEdit->setPageNumbersAlignment(Qt::AlignBottom | Qt::AlignRight);
+    pageEdit->setShowPageNumbers(true);
+    pageEdit->setPageNumbersAlignment(Qt::AlignBottom | Qt::AlignRight);
 
     setupWidgets();
     setupActions();
