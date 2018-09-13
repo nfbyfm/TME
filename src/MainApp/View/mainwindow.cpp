@@ -31,20 +31,28 @@
  *                                          http://hunspell.github.io/
  *                      search and replace
  *                      paste without formating
+ *                      Titles
+ *                      Table of contents
+ *                      Literature-index
+ *                      List of figures
+ *                      List of tables and similar
+ *
  *
  * 5) Document:         Properties:         Dialog
  *                                          struct for properties, -> use for Signals / Slots
  *                                          set-Functions for/from documentHandler
  *                                          default-Settings when creating new document
- *                      print / export:     use distinct id's for formulas and id's!! link gets lost if a formula gets changed in the editor
+ *                      print / export:     use distinct id's for formulas and variables!! link gets lost if a formula gets changed in the editor
  *                                          ask user what to do with deleted but linked formulas and variables -> write as plain text for example?
  *                      precision:          set precision when giving out results / linked variablevalues
  *                      tousand-separator:  show / don't show
  *                      print:              set margins / pageproperties right: https://stackoverflow.com/questions/10294692/how-to-set-qtextdocument-margins-and-other-properties-sethtml-print-to-pdf
  *                      plots/diagrams:     https://www.qcustomplot.com/index.php/introduction
  *
- * 6) Edit:             search-function
- *                      search- & replace-function
+ * 6) Engineering:      Database (MySQL)
+ *                          -> list of Materials
+ *                          -> List of standard-calculations an illustrations
+ *
  * 7) Images:           when using relative paths: what if the document hasn't been saved yet? Problems when printing!! -> Don't get rendered!
  *                      enumeration & title
  *
@@ -56,7 +64,7 @@
  * 13) Math:        better, faster Editing of formulas and Varaibles
  * 14) tables:          import from Excel
  *                      import from clipboard (not just as image!!)
- *                      edit table-cells
+ *                      edit table-cells (merge, borders, add/remove rows, backgroundcolors)
  */
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),  ui(new Ui::MainWindow)
