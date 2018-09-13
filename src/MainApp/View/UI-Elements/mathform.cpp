@@ -471,4 +471,14 @@ MathForm::~MathForm()
 #define GUI_FUNCTIONS_END }
 
 
+void MathForm::setupSlitterOrientation(Qt::Orientation orientation)
+{
+    ui->splitter->setOrientation(orientation);
 
+}
+/*
+void MathForm::resizeEvent(QResizeEvent *event)
+{
+
+}
+*/

@@ -65,6 +65,12 @@ public:
      */
     void retranslateUI();
 
+    /**
+     * @brief setup-function for setting the orientation of the main splitter
+     *
+     */
+    void setupSlitterOrientation(Qt::Orientation orientation);
+
 private:
     Ui::MathForm *ui;
 
@@ -85,6 +91,7 @@ private:
      *
      */
     void setupComboBoxes();
+
 
 
 private slots:

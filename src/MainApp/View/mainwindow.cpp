@@ -274,6 +274,9 @@ MainWindow::~MainWindow()
         connect(ui->action_help, &QAction::triggered, this, &MainWindow::showHelpDialog);
         connect(ui->action_about, &QAction::triggered, this, &MainWindow::showAboutDialog);
         connect(ui->action_settings, &QAction::triggered, this, &MainWindow::showSettingsDialog);
+
+
+
     }
 
     void MainWindow::connectTextEdit()
@@ -471,6 +474,28 @@ MainWindow::~MainWindow()
         this->setStyleSheet(style);
     }
 
+
+    void MainWindow::on_dockWidget_3_dockLocationChanged(const Qt::DockWidgetArea &area)
+    {
+        switch(area)
+        {
+            case Qt::DockWidgetArea::BottomDockWidgetArea:
+            case Qt::DockWidgetArea::TopDockWidgetArea:
+                mathForm->setupSlitterOrientation(Qt::Horizontal);
+                break;
+            case Qt::DockWidgetArea::LeftDockWidgetArea:
+            case Qt::DockWidgetArea::RightDockWidgetArea:
+                mathForm->setupSlitterOrientation(Qt::Vertical);
+                break;
+            default:
+                QRect rectangl = ui->dockWidget_3->geometry();
+                if(rectangl.width()>rectangl.height())
+                    mathForm->setupSlitterOrientation(Qt::Horizontal);
+                else
+                    mathForm->setupSlitterOrientation(Qt::Vertical);
+                break;
+        }
+    }
 
 #define WINDOW_FUNCTIONS_END }
 
@@ -1115,5 +1140,6 @@ MainWindow::~MainWindow()
         mathForm->setMathData(formulaList,variableList);
     }
 #define MATH_FUNCTIONS_END }
+
 
 

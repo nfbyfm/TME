@@ -334,10 +334,16 @@ private slots:
     void showImageForm();
 
     /**
-     * @brief
+     * @brief function for recieving and forwarding errormessages from other submodules
      *
      */
     void recieveErrorMessage(ErrorMessage *msg);
+
+    /**
+     * @brief when placement of toolbox changes, change orientation of mathform-splitter
+     *
+     */
+    void on_dockWidget_3_dockLocationChanged(const Qt::DockWidgetArea &area);
 
 private:
     Ui::MainWindow *ui; //pointer to the Ui
