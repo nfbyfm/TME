@@ -29,6 +29,8 @@
  *                                          https://github.com/manisandro/qtspell
  *                                          http://www.qtcentre.org/threads/38227-QTextEdit-with-hunspell-spell-checker-and-syntax-highlighter
  *                                          http://hunspell.github.io/
+ *                      search and replace
+ *                      paste without formating
  *
  * 5) Document:         Properties:         Dialog
  *                                          struct for properties, -> use for Signals / Slots
@@ -37,15 +39,24 @@
  *                      print / export:     use distinct id's for formulas and id's!! link gets lost if a formula gets changed in the editor
  *                                          ask user what to do with deleted but linked formulas and variables -> write as plain text for example?
  *                      precision:          set precision when giving out results / linked variablevalues
+ *                      tousand-separator:  show / don't show
+ *                      print:              set margins / pageproperties right: https://stackoverflow.com/questions/10294692/how-to-set-qtextdocument-margins-and-other-properties-sethtml-print-to-pdf
+ *                      plots/diagrams:     https://www.qcustomplot.com/index.php/introduction
  *
  * 6) Edit:             search-function
  *                      search- & replace-function
  * 7) Images:           when using relative paths: what if the document hasn't been saved yet? Problems when printing!! -> Don't get rendered!
+ *                      enumeration & title
  *
  * 8) rendern von Mathematik-Formeln -> als Bild in html-Dokument einfügen?
  * 9) use of Ribbon for menu
  * 10) Mathjax with qt quick?
- * 11)
+ * 11) Varaibles: Units and automatic conversion of them
+ * 12) Presolver / parser: Brackets, power-function, trigonometric functions
+ * 13) Math:        better, faster Editing of formulas and Varaibles
+ * 14) tables:          import from Excel
+ *                      import from clipboard (not just as image!!)
+ *                      edit table-cells
  */
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),  ui(new Ui::MainWindow)

@@ -504,7 +504,15 @@ void DocumentHandler::setCurrentFileName(const QString &fiName)
             QPrinter printer(QPrinter::HighResolution);
             printer.setOutputFormat(QPrinter::PdfFormat);
             printer.setOutputFileName(fileName);
+            //printer.setResolution(96);
+            printer.setPageSize(QPrinter::A4);
+            printer.setPageMargins(0, 0, 0, 0, QPrinter::Millimeter);
+            //printer.setPageMargins(15, 15, 15, 15, QPrinter::Millimeter);//printer.setPageMargins(12, 16, 12, 20, QPrinter.Millimeter)
+            //document.setPageSize(QSizeF(printer.pageRect().size()))
+            //print(document.pageSize(), printer.resolution(), printer.pageRect())
             createPrintDocument();
+            //documentForPrint->setPageSize(QSizeF(printer.pageRect().size()));
+            documentForPrint->setDocumentMargin(0);
             documentForPrint->print(&printer);
 
             emit showStatusMessage(tr("File '%1' has been exported").arg(QDir::toNativeSeparators(fileName)),2000);
