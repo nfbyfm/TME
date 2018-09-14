@@ -475,27 +475,6 @@ MainWindow::~MainWindow()
     }
 
 
-    void MainWindow::on_dockWidget_3_dockLocationChanged(const Qt::DockWidgetArea &area)
-    {
-        switch(area)
-        {
-            case Qt::DockWidgetArea::BottomDockWidgetArea:
-            case Qt::DockWidgetArea::TopDockWidgetArea:
-                mathForm->setupSlitterOrientation(Qt::Horizontal);
-                break;
-            case Qt::DockWidgetArea::LeftDockWidgetArea:
-            case Qt::DockWidgetArea::RightDockWidgetArea:
-                mathForm->setupSlitterOrientation(Qt::Vertical);
-                break;
-            default:
-                QRect rectangl = ui->dockWidget_3->geometry();
-                if(rectangl.width()>rectangl.height())
-                    mathForm->setupSlitterOrientation(Qt::Horizontal);
-                else
-                    mathForm->setupSlitterOrientation(Qt::Vertical);
-                break;
-        }
-    }
 
 #define WINDOW_FUNCTIONS_END }
 

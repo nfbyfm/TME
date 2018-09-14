@@ -339,11 +339,7 @@ private slots:
      */
     void recieveErrorMessage(ErrorMessage *msg);
 
-    /**
-     * @brief when placement of toolbox changes, change orientation of mathform-splitter
-     *
-     */
-    void on_dockWidget_3_dockLocationChanged(const Qt::DockWidgetArea &area);
+
 
 private:
     Ui::MainWindow *ui; //pointer to the Ui

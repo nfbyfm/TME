@@ -65,11 +65,7 @@ public:
      */
     void retranslateUI();
 
-    /**
-     * @brief setup-function for setting the orientation of the main splitter
-     *
-     */
-    void setupSlitterOrientation(Qt::Orientation orientation);
+
 
 private:
     Ui::MathForm *ui;
@@ -132,6 +128,7 @@ private slots:
      */
     void addFormulaToText();
 
+    void resizeEvent(QResizeEvent* event);
 signals:
     void sendError(ErrorMessage *msg);
     void addTextToDocument(QString text);
