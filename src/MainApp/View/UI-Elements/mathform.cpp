@@ -35,21 +35,31 @@ MathForm::~MathForm()
         ui->variableTableWidget->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
         ui->variableTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
+        setupTableHeaders();
+    }
+
+    void MathForm::setupTableHeaders()
+    {
+        ui->formulaTableWidget->clear();
+        ui->variableTableWidget->clear();
+
         QStringList headerlabels;
         headerlabels.append(tr("Nr."));
-        headerlabels.append(tr("solvable"));
+        //headerlabels.append(tr("solvable"));
         headerlabels.append(tr("Formula"));
         headerlabels.append(tr("Variables"));
-        ui->formulaTableWidget->setColumnCount(4);
+
+        ui->formulaTableWidget->setColumnCount(3);
         ui->formulaTableWidget->setHorizontalHeaderLabels(headerlabels);
+
 
         QStringList headerlabels2;
         headerlabels2.append(tr("Variable"));
-        headerlabels2.append(tr("solved"));
+        //headerlabels2.append(tr("solved"));
         headerlabels2.append(tr("Value"));
-        headerlabels2.append(tr("Formulas"));
+        //headerlabels2.append(tr("Formulas"));
 
-        ui->variableTableWidget->setColumnCount(4);
+        ui->variableTableWidget->setColumnCount(2);
         ui->variableTableWidget->setHorizontalHeaderLabels(headerlabels2);
     }
 
@@ -78,28 +88,29 @@ MathForm::~MathForm()
 
     void MathForm::setMathData(QList<MFormula*> formulaList, QList<MVariable*> variableList)
     {
-        ui->formulaTableWidget->clear();
+        setupTableHeaders();
 
-        QStringList headerlabels;
-        headerlabels.append(tr("Nr."));
-        headerlabels.append(tr("solvable"));
-        headerlabels.append(tr("Formula"));
-        headerlabels.append(tr("Variables"));
-
-        ui->formulaTableWidget->setColumnCount(4);
         ui->formulaTableWidget->setRowCount(formulaList.size());
-
-        ui->formulaTableWidget->setHorizontalHeaderLabels(headerlabels);
 
         //qDebug()<<"called setting of the TableWidget Headers. List size: " << list.size();
         for(int i = 0; i<formulaList.size();i++)
         {
+            QColor backgroundColor;
+            if(formulaList.at(i)->getSolvable())
+            {
+                backgroundColor = QColor::fromRgb(255,255,255,200);//solvable -> white
+            }
+            else
+            {
+                backgroundColor = QColor::fromRgb(128,128,128,200);//unsolvable -> gray
+            }
 
         //Number of the formula
             QTableWidgetItem *newItem = new QTableWidgetItem(formulaList.at(i)->getID());
             newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
+            newItem->setBackgroundColor(backgroundColor);
             ui->formulaTableWidget->setItem(i,0,newItem);
-
+/*
         //solvable
             bool solvable = false;
             QString strValue ="";
@@ -126,43 +137,50 @@ MathForm::~MathForm()
             newItem->setBackgroundColor(backgroundColor);
             newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
             ui->formulaTableWidget->setItem(i,1,newItem);
-
+*/
         //Formula
             newItem = new QTableWidgetItem(formulaList.at(i)->toString());
-            ui->formulaTableWidget->setItem(i,2,newItem);
+            newItem->setBackgroundColor(backgroundColor);
+            ui->formulaTableWidget->setItem(i,1,newItem);
 
         //Variables
             newItem = new QTableWidgetItem(formulaList.at(i)->getVariableNames());
             newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
-            ui->formulaTableWidget->setItem(i,3,newItem);
+            newItem->setBackgroundColor(backgroundColor);
+            ui->formulaTableWidget->setItem(i,2,newItem);
 
 
         }
 
 
-        ui->variableTableWidget->clear();
 
 
-        QStringList headerlabels2;
-        headerlabels2.append(tr("Variable"));
-        headerlabels2.append(tr("solved"));
-        headerlabels2.append(tr("Value"));
-        headerlabels2.append(tr("Formulas"));
 
-        ui->variableTableWidget->setColumnCount(4);
+
         ui->variableTableWidget->setRowCount(variableList.size());
-
-        ui->variableTableWidget->setHorizontalHeaderLabels(headerlabels2);
-
 
         for(int i = 0; i<variableList.size();i++)
         {
 
+            //solved / unsolved -> set background-Color of whole row accordingly
+            QColor backgroundColor;
+            QColor textColor;
+            if( variableList.at(i)->getSolved())
+            {
+                backgroundColor = QColor::fromRgb(255,255,255,200);//solved -> white
+            }
+            else
+            {
+                backgroundColor = QColor::fromRgb(128,128,128,200);//unsolved -> gray
+            }
+
+
         //Variable name
             QTableWidgetItem *newItem = new QTableWidgetItem(variableList.at(i)->getTextValue());
             newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
+            newItem->setBackgroundColor(backgroundColor);
             ui->variableTableWidget->setItem(i,0,newItem);
-
+/*
         //solved
             bool solved = false;
             bool overdetermined;
@@ -197,17 +215,19 @@ MathForm::~MathForm()
             newItem->setBackgroundColor(backgroundColor);
             newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
             ui->variableTableWidget->setItem(i,1,newItem);
-
+*/
         //Value
             newItem = new QTableWidgetItem(QString::number(variableList.at(i)->getNumericValue()));
             newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
-            ui->variableTableWidget->setItem(i,2,newItem);
-
+            newItem->setBackgroundColor(backgroundColor);
+            ui->variableTableWidget->setItem(i,1,newItem);
+/*
         //Formulas
             newItem = new QTableWidgetItem(variableList.at(i)->getFormulaNumberList());
             newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
-            ui->variableTableWidget->setItem(i,3,newItem);
-
+            newItem->setBackgroundColor(backgroundColor);
+            ui->variableTableWidget->setItem(i,2,newItem);
+*/
 
         }
 
@@ -237,7 +257,7 @@ MathForm::~MathForm()
 
         for(int i = 0; i<ui->formulaTableWidget->rowCount(); i++)
         {
-            result->append(ui->formulaTableWidget->item(i,2)->text().replace(",","."));
+            result->append(ui->formulaTableWidget->item(i,1)->text().replace(",","."));
         }
 
         qDebug()<<"MathForm: get List of current Formulas called";
@@ -290,7 +310,7 @@ MathForm::~MathForm()
                 QTableWidgetItem *newItem = new QTableWidgetItem(variableName);
                 newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
                 ui->variableTableWidget->setItem(rowIndex,0,newItem);
-
+/*
             //solved
                 bool solved = false;
                 QString strValue ="";
@@ -317,17 +337,17 @@ MathForm::~MathForm()
                 newItem->setBackgroundColor(backgroundColor);
                 newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
                 ui->variableTableWidget->setItem(rowIndex,1,newItem);
-
+*/
             //Value
                 newItem = new QTableWidgetItem(QString::number(0));
                 newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
-                ui->variableTableWidget->setItem(rowIndex,2,newItem);
-
+                ui->variableTableWidget->setItem(rowIndex,1,newItem);
+/*
             //Formulas
                 newItem = new QTableWidgetItem("-");
                 newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
                 ui->variableTableWidget->setItem(rowIndex,3,newItem);
-
+*/
             ui->lineEditVariables->setText("");
         }
         else
@@ -365,20 +385,20 @@ MathForm::~MathForm()
                 QTableWidgetItem *newItem = new QTableWidgetItem("-");
                 newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
                 ui->formulaTableWidget->setItem(rowIndex,0,newItem);
-
+/*
             //solvable
                 newItem = new QTableWidgetItem("");
                 newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
                 ui->formulaTableWidget->setItem(rowIndex,1,newItem);
-
+*/
             //Formula
                 newItem = new QTableWidgetItem(formulaName);
-                ui->formulaTableWidget->setItem(rowIndex,2,newItem);
+                ui->formulaTableWidget->setItem(rowIndex,1,newItem);
 
             //Variables
                 newItem = new QTableWidgetItem("");
                 newItem->setFlags(newItem->flags()^Qt::ItemIsEditable);     //read-only
-                ui->formulaTableWidget->setItem(rowIndex,3,newItem);
+                ui->formulaTableWidget->setItem(rowIndex,2,newItem);
 
             ui->lineEditFormulas->setText("");
         }

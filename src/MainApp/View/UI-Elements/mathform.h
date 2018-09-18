@@ -88,7 +88,11 @@ private:
      */
     void setupComboBoxes();
 
-
+    /**
+     * @brief setup-function for setting the table-headers
+     *
+     */
+    void setupTableHeaders();
 
 private slots:
     /**
