@@ -6,72 +6,54 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>200</width>
-    <height>470</height>
+    <width>250</width>
+    <height>572</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MathForm</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_3">
+  <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="leftMargin">
-    <number>0</number>
+    <number>2</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>2</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>2</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>2</number>
    </property>
-   <property name="spacing">
-    <number>0</number>
-   </property>
-   <item row="0" column="0">
-    <widget class="QSplitter" name="splitter">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
-     <widget class="QGroupBox" name="groupBox_Formulas">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QGroupBox#groupBox_Formulas
-{ 
-     border: 2px solid gray; 
-     border-radius: 3px; 
- } 
-QGroupBox#groupBox_Formulas::title { 
-    background-color: transparent;
-     subcontrol-position: top left; /* position at the top left*/ 
-     padding:2 13px;
- } </string>
-      </property>
-      <property name="title">
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="tabPosition">
+      <enum>QTabWidget::North</enum>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabFormulas">
+      <attribute name="title">
        <string>Formulas</string>
-      </property>
+      </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_6">
-       <property name="spacing">
-        <number>6</number>
-       </property>
-       <property name="leftMargin">
-        <number>6</number>
-       </property>
-       <property name="topMargin">
-        <number>20</number>
-       </property>
-       <property name="rightMargin">
-        <number>6</number>
-       </property>
-       <property name="bottomMargin">
-        <number>6</number>
-       </property>
        <item>
         <widget class="QTableWidget" name="formulaTableWidget">
          <property name="sizePolicy">
@@ -220,44 +202,11 @@ QGroupBox#groupBox_Formulas::title {
        </item>
       </layout>
      </widget>
-     <widget class="QGroupBox" name="groupBox_Variables">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QGroupBox#groupBox_Variables
-{ 
-     border: 2px solid gray; 
-     border-radius: 3px; 
- } 
-QGroupBox#groupBox_Variables::title { 
-    background-color: transparent;
-     subcontrol-position: top left; /* position at the top left*/ 
-     padding:2 13px;
- } </string>
-      </property>
-      <property name="title">
+     <widget class="QWidget" name="tabVariables">
+      <attribute name="title">
        <string>Variables</string>
-      </property>
+      </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_4">
-       <property name="spacing">
-        <number>6</number>
-       </property>
-       <property name="leftMargin">
-        <number>6</number>
-       </property>
-       <property name="topMargin">
-        <number>20</number>
-       </property>
-       <property name="rightMargin">
-        <number>6</number>
-       </property>
-       <property name="bottomMargin">
-        <number>6</number>
-       </property>
        <item>
         <widget class="QTableWidget" name="variableTableWidget">
          <property name="sizePolicy">

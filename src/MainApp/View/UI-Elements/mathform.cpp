@@ -496,14 +496,14 @@ MathForm::~MathForm()
     void MathForm::resizeEvent(QResizeEvent* event)
     {
         QWidget::resizeEvent(event);
-
+/*
         //change splitter orientation
         QRect rectangl =this->geometry();
         if(rectangl.width()>rectangl.height())
             ui->splitter->setOrientation(Qt::Horizontal);
         else
             ui->splitter->setOrientation(Qt::Vertical);
-
+*/
     }
 #define GUI_FUNCTIONS_END }
 
