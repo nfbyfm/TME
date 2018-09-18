@@ -132,7 +132,13 @@ private slots:
      */
     void addFormulaToText();
 
+    /**
+     * @brief change splitter-orientation when size changes
+     *
+     */
     void resizeEvent(QResizeEvent* event);
+
+
 signals:
     void sendError(ErrorMessage *msg);
     void addTextToDocument(QString text);

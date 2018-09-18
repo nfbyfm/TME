@@ -7,6 +7,8 @@ MathForm::MathForm(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
+    ui->groupBox_4->hide();
     setupTableWidgets();
     setupButtons();
     setupComboBoxes();
@@ -72,6 +74,8 @@ MathForm::~MathForm()
 
         connect(ui->toolButton_addFormulaToText, &QToolButton::released, this, &MathForm::addFormulaToText);
         connect(ui->toolButton_addVariableToText, &QToolButton::released, this, &MathForm::addVaraibleToText);
+
+        connect(ui->lineEditFormulas, &QLineEdit::returnPressed, this, &MathForm::addFormula);
     }
 
     void MathForm::setupComboBoxes()
@@ -461,7 +465,7 @@ MathForm::~MathForm()
     {
         if(ui->formulaTableWidget->currentRow()>=0)
         {
-            QString formula = ui->formulaTableWidget->item(ui->formulaTableWidget->currentRow(),2)->text();
+            QString formula = ui->formulaTableWidget->item(ui->formulaTableWidget->currentRow(),1)->text();
 
             formula = "$link(" + formula + ",";
 
