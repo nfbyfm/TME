@@ -36,7 +36,7 @@ private:
      *
      * @param n number of times the searchword has been found. Shows no text if equals zero.
      */
-    void displayFoundXTimes(int n);
+    void displayFoundXTimes(int n, bool notFound);
 
 
     /**

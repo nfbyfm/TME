@@ -23,7 +23,7 @@ FindDialog::FindDialog(QWidget *parent, bool search_only, QTextDocument *doc) :
     ui->groupBoxSearchIn->setEnabled(false);
     ui->groupBoxSearchIn->setVisible(false);
 
-    displayFoundXTimes(0);
+    displayFoundXTimes(0, false);
 
     connect(ui->pushButton_Find,&QPushButton::clicked, this, &FindDialog::findText);
     connect(this, &QDialog::accepted, this, &FindDialog::closeDialog);
@@ -35,11 +35,15 @@ FindDialog::~FindDialog()
     delete ui;
 }
 
-void FindDialog::displayFoundXTimes(int n)
+void FindDialog::displayFoundXTimes(int n, bool notFound)
 {
     if (n > 0)
     {
        ui->label_FoundXTimes->setText(n == 1 ? tr("Searchword found %1 time.").arg(n) : tr("Searchword found %1 times.").arg(n));// tr("Searchword found %1 times.").arg(n));
+    }
+    else if(notFound)
+    {
+        ui->label_FoundXTimes->setText(tr("Searchword could not be found."));
     }
     else
     {
@@ -75,6 +79,7 @@ void FindDialog::findText()
         QTextCharFormat plainFormat(highlightCursor.charFormat());
         QTextCharFormat colorFormat = plainFormat;
         colorFormat.setForeground(Qt::red);
+        int counter =0;
 
         while (!highlightCursor.isNull() && !highlightCursor.atEnd())
         {
@@ -85,24 +90,28 @@ void FindDialog::findText()
                 found = true;
                 highlightCursor.movePosition(QTextCursor::WordRight, QTextCursor::KeepAnchor);
                 highlightCursor.mergeCharFormat(colorFormat);
+                counter++;
             }
         }
 
         cursor.endEditBlock();
         isFirstTime = false;
 
-         if (found == false)
-         {
-             qDebug()<<"FindDialog: couldn't find the searchword";
-             //document->undo();
-             //QMessageBox::information(this, tr("Word Not Found"),  "Sorry, the word cannot be found.");
-         }
+        if (found == false)
+        {
+            qDebug()<<"FindDialog: couldn't find the searchword";
+            //document->undo();
+            //QMessageBox::information(this, tr("Word Not Found"),  "Sorry, the word cannot be found.");
+            isFirstTime=true;
+        }
+
+        displayFoundXTimes(counter, !found);
     }
 }
 
 void FindDialog::closeDialog()
 {
-    if(showSearchOnly)
+    if(showSearchOnly && !isFirstTime)
     {
         document->undo();
     }
