@@ -2,7 +2,8 @@
 #define FINDDIALOG_H
 
 #include <QDialog>
-
+#include <QTextDocument>
+#include <QDebug>
 
 namespace Ui {
 class FindDialog;
@@ -17,7 +18,7 @@ class FindDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit FindDialog(QWidget *parent = nullptr, bool search_only=false);
+    explicit FindDialog(QWidget *parent = nullptr, bool search_only=false, QTextDocument *doc=nullptr);
     ~FindDialog();
 
 private:
@@ -36,6 +37,21 @@ private:
      * @param n number of times the searchword has been found. Shows no text if equals zero.
      */
     void displayFoundXTimes(int n);
+
+
+    /**
+     * @brief functiopn for highlighting found text
+     *
+     */
+    void findText();
+
+    /**
+     * @brief when closing, undo highlighting of search-function
+     */
+    void closeDialog();
+
+     bool isFirstTime;
+     QTextDocument *document;
 };
 
 #endif // FINDDIALOG_H

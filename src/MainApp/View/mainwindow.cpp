@@ -1032,7 +1032,7 @@ MainWindow::~MainWindow()
 
     void MainWindow::searchText()
     {
-        FindDialog *fdia = new FindDialog(this, true);
+        FindDialog *fdia = new FindDialog(this, true, pageEdit->document());
         fdia->setWindowTitle(tr("Search"));
         //show modal -> can't click / use other View-Components (Dialogs / Mainwindow)
         fdia->exec();
@@ -1040,7 +1040,7 @@ MainWindow::~MainWindow()
 
     void MainWindow::searchAndReplaceText()
     {
-        FindDialog *fdia = new FindDialog(this, false);
+        FindDialog *fdia = new FindDialog(this, false,pageEdit->document());
         fdia->setWindowTitle(tr("Search and replace"));
         //non-Modal (can click on other Dialogs / Mainwindow)
         fdia->show();
