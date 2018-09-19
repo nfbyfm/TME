@@ -20,6 +20,9 @@ FindDialog::FindDialog(QWidget *parent, bool search_only, QTextDocument *doc) :
         ui->label_2->hide();
         ui->pushButton_Replace->setEnabled(false);
         ui->pushButton_ReplaceAll->setEnabled(false);
+
+        ui->pushButton_Replace->hide();
+        ui->pushButton_ReplaceAll->hide();
     }
 
     //ui->groupBoxSearchIn->setEnabled(false);
