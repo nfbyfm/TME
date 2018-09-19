@@ -16,16 +16,21 @@ FindDialog::FindDialog(QWidget *parent, bool search_only, QTextDocument *doc) :
     {
         ui->textToReplaceWith->setEnabled(false);
         ui->label_2->setEnabled(false);
+        ui->textToReplaceWith->hide();
+        ui->label_2->hide();
         ui->pushButton_Replace->setEnabled(false);
         ui->pushButton_ReplaceAll->setEnabled(false);
     }
 
-    ui->groupBoxSearchIn->setEnabled(false);
-    ui->groupBoxSearchIn->setVisible(false);
+    //ui->groupBoxSearchIn->setEnabled(false);
+    //ui->groupBoxSearchIn->setVisible(false);
+    ui->radioButtonCurrentDocument->setChecked(true);
 
     displayFoundXTimes(0, false);
 
     connect(ui->pushButton_Find,&QPushButton::clicked, this, &FindDialog::findText);
+    connect(ui->pushButton_Replace, &QPushButton::clicked, this, &FindDialog::searchAndReplaceText);
+    connect(ui->pushButton_ReplaceAll, &QPushButton::clicked, this, &FindDialog::searchAndReplaceAll);
     connect(this, &QDialog::accepted, this, &FindDialog::closeDialog);
     connect(this, &QDialog::rejected, this, &FindDialog::closeDialog);
 }
@@ -108,6 +113,19 @@ void FindDialog::findText()
         displayFoundXTimes(counter, !found);
     }
 }
+
+
+void FindDialog::searchAndReplaceText()
+{
+
+}
+
+
+void FindDialog::searchAndReplaceAll()
+{
+
+}
+
 
 void FindDialog::closeDialog()
 {

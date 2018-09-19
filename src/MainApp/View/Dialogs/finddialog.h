@@ -50,8 +50,18 @@ private:
      */
     void closeDialog();
 
-     bool isFirstTime;
-     QTextDocument *document;
+    /**
+     * @brief search and replace Text in given document
+     */
+    void searchAndReplaceText();
+
+    /**
+     * @brief search and replace every match in given document
+     */
+    void searchAndReplaceAll();
+
+    bool isFirstTime;
+    QTextDocument *document;
 };
 
 #endif // FINDDIALOG_H
