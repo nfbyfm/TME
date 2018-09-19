@@ -88,7 +88,15 @@ void FindDialog::findText()
 
         while (!highlightCursor.isNull() && !highlightCursor.atEnd())
         {
-            highlightCursor = document->find(searchString, highlightCursor, QTextDocument::FindWholeWords);
+            if(ui->checkBox_CaseSensitive->isChecked())
+            {
+                //search with case-sensitivty on
+                highlightCursor = document->find(searchString, highlightCursor, QTextDocument::FindWholeWords | QTextDocument::FindCaseSensitively);
+            }
+            else
+            {
+                highlightCursor = document->find(searchString, highlightCursor, QTextDocument::FindWholeWords);
+            }
 
             if (!highlightCursor.isNull())
             {
@@ -114,13 +122,13 @@ void FindDialog::findText()
     }
 }
 
-
+//replace currently highlighted word
 void FindDialog::searchAndReplaceText()
 {
 
 }
 
-
+//replace all occurences
 void FindDialog::searchAndReplaceAll()
 {
 
