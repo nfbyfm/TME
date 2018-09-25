@@ -169,8 +169,8 @@ void FaultHandler::setErrorProperties(ErrorMessage * errorMsg)
 void FaultHandler::setSuppressMessages(bool value)
 {
     suppressMessages = value;
-    QString boolText = value ? "true" : "false";
-    qDebug()<<"FaultHandler: setSuppressMessages has been set to: " + boolText;
+    //QString boolText = value ? "true" : "false";
+    //qDebug()<<"FaultHandler: setSuppressMessages has been set to: " + boolText;
 }
 
 //link Enum-Items of ERROR_ID with the Error-Text

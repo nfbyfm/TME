@@ -22,6 +22,9 @@
 
 
 /*
+ * 0) FaultHandling new Mathengine      -> show Unsolvable equations in Error-dialog!!
+ *                                      -> other unsolvable Equations are shown as solvable !!!?
+ *                                      -> catastrophic failure if formula beginning with a bracket is being used
  * 1) Testing: write more unittests
  * 2) update Doxygen-Documentation
  * 3) Welcome-Document:   short How-To-Document, add to release *
@@ -1066,8 +1069,6 @@ MainWindow::~MainWindow()
         }
         else
         {
-            qDebug()<<"Mainwindow: Solve Math has been triggered. Emiting signals";
-            emit solveMath(false);
             emit solveMath(mathForm->getListofCurrentFormulas());
         }
         ui->tabWidgetTools->setCurrentIndex(0);
@@ -1093,20 +1094,17 @@ MainWindow::~MainWindow()
                 if (ret == QMessageBox::Yes)
                 {
                     ui->tabWidgetTools->setCurrentIndex(0);
-                    emit solveMath(false);
                     emit solveMath(pageEdit->toPlainText(), true, mathForm->getListofCurrentFormulas());
                 }
                 else if (ret == QMessageBox::No)
                 {
                     ui->tabWidgetTools->setCurrentIndex(0);
-                    emit solveMath(false);
                     emit solveMath(pageEdit->toPlainText(), false, mathForm->getListofCurrentFormulas());
                 }
             }
             else
             {
                 ui->tabWidgetTools->setCurrentIndex(0);
-                emit solveMath(false);
                 emit solveMath(pageEdit->toPlainText(), true, mathForm->getListofCurrentFormulas());
             }
         }

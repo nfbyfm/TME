@@ -66,9 +66,6 @@ void Controller::connect()
     QObject::connect(mView, SIGNAL(printPDF(QStringList *)), this, SLOT(printPDF(QStringList *)));
     QObject::connect(mView, SIGNAL(showPrintPreview(QStringList *)), this, SLOT(showPrintPreview(QStringList *)));
 
-    //QObject::connect(mView, SIGNAL(solveMath(bool)), fHandler, SLOT(setSuppressMessages(bool)));      //if the user starts the solving-process, don't suppress the showing of errors (suppressed when creating pdf's, print-documents and while loading a new file)
-
-
 
     //View -> DocumentHandler
     QObject::connect(mView, SIGNAL(newFile(QStringList *)), docHandler, SLOT(newDocument(QStringList *)));
