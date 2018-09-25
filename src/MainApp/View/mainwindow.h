@@ -92,6 +92,11 @@ signals:
      */
     void solveMath(QStringList * listOfFormulas);
 
+    /**
+     * @brief solveMath: Function needed for telling the controller to lift the suppression of errormessages. Always emit before emitting the other solveMath(...)-signals!!
+     * @param suppress always set to false if Errormessages are supposed to be shown
+     */
+    void solveMath(bool suppress);
 
     /**
      * @brief show the about-dialog

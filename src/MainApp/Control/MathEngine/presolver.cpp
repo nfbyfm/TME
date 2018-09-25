@@ -10,21 +10,22 @@ PreSolver::PreSolver(QObject *parent) : QObject(parent)
 QList<MFFormula *> * PreSolver::getPartitionedFormulasList(QList <MFormula *> f_origList)
 {
     //first: for each formula: plug in varaible-values if possible, set formula 'solvable' anew accordingly
-    qDebug()<<"";
+    /*qDebug()<<"";
     qDebug()<< "FormulaList before update: ";
     for(int i =0; i<f_origList.count();i++)
     {
         qDebug()<<f_origList.at(i)->toString() + "      solvable: " + QString::number(f_origList.at(i)->getSolvable()) + "      solved: " + QString::number(f_origList.at(i)->getIsSolved());;
     }
-
+    */
     QList <MFormula *> f_List = updateUnsolvedEquations(f_origList);
 
-    qDebug()<<"";
+    /*qDebug()<<"";
     qDebug()<< "FormulaList after update: ";
     for(int i =0; i<f_List.count();i++)
     {
         qDebug()<<f_List.at(i)->toString() + "      solvable: " + QString::number(f_List.at(i)->getSolvable()) + "      solved: " + QString::number(f_List.at(i)->getIsSolved());
     }
+    */
     //QList <MFormula *> f_List = f_origList;
 
     //create standardized List for the Translator (a_n*x_n + a_n-1 * x_n-1 + .... + a_0 = 0)
@@ -233,8 +234,8 @@ QList<MFormula *> PreSolver::updateUnsolvedEquations(QList<MFormula *> mFormulaL
 
     if(!mFormulaList.isEmpty())
     {
-        qDebug()<<"";
-        qDebug()<<"find and update unsolved formulas";
+        //qDebug()<<"";
+        //qDebug()<<"find and update unsolved formulas";
 
         for(int i=0; i< mFormulaList.count(); i++)
         {
@@ -286,7 +287,7 @@ QList<MFormula *> PreSolver::updateUnsolvedEquations(QList<MFormula *> mFormulaL
                     if(noOfunsolvedVariables ==1)
                     {
                         //solve newFormulaTokenList -> write
-                        qDebug()<<"found formula to solve: " + mFormulaList.at(i)->toString();
+                        //qDebug()<<"found formula to solve: " + mFormulaList.at(i)->toString();
 
                         MFormula *newFormula = new MFormula(nullptr);
                         newFormula->setTokenList(newFormulaTokenList);
@@ -296,7 +297,7 @@ QList<MFormula *> PreSolver::updateUnsolvedEquations(QList<MFormula *> mFormulaL
                     else
                     {
                         //if number of unsolved variables equals one, solve the equation
-                        qDebug()<<"unsolved equation: " + mFormulaList.at(i)->toString();
+                        //qDebug()<<"unsolved equation: " + mFormulaList.at(i)->toString();
                         if(noOfunsolvedVariables==0)
                         {
                             mFormulaList.at(i)->setSolvable(true);
@@ -399,7 +400,7 @@ MToken * PreSolver::variableTokenNumeric(MToken* tokenPointer)
                         tmpPart->removeLastToken();
                         tmpPart->appendTokenList(new MToken(nullptr, "*", MTokenType::OPERATOR));
                         newElement = new MToken(tokenPointer,QString::number(1/value),MTokenType::NUMBER);
-                        qDebug()<<"Presolver: division by Number detected. turned into multiplication." << tmpPart->tokenListToString();
+                        //qDebug()<<"Presolver: division by Number detected. turned into multiplication." << tmpPart->tokenListToString();
                     }
                     else
                         qDebug()<<"Presolver: division by Number detected. could not turn into mulitplication.";
@@ -407,7 +408,7 @@ MToken * PreSolver::variableTokenNumeric(MToken* tokenPointer)
                 }
 
         tmpPart->appendTokenList(newElement);
-        qDebug()<<"Presolver: numberTokenReciproque: " << tmpPart->tokenListToString();
+        //qDebug()<<"Presolver: numberTokenReciproque: " << tmpPart->tokenListToString();
 
     }
 }

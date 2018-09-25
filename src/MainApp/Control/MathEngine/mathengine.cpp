@@ -200,6 +200,7 @@ void MathEngine::startSolver(QStringList *formulasFromModel)
 
 void MathEngine::recieveError(ErrorMessage *errmsg)
 {
+    qDebug()<<"Mathengine: recieved an error. Sending it to FaultHandler.";
     emit sendError(errmsg);
 }
 
@@ -227,7 +228,7 @@ void MathEngine::recieveMathDataFromParser(QList<MFormula*> formulaList, QList<M
 
         if (numberOfUnsolvedFormulas >0)
         {
-            qDebug()<<"Mathengine: simplifing Equations done. Calling solver";
+            //qDebug()<<"Mathengine: simplifing Equations done. Calling solver";
             mSolver->startSolving(mfFormulaList);
         }
 

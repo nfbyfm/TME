@@ -66,6 +66,8 @@ void Controller::connect()
     QObject::connect(mView, SIGNAL(printPDF(QStringList *)), this, SLOT(printPDF(QStringList *)));
     QObject::connect(mView, SIGNAL(showPrintPreview(QStringList *)), this, SLOT(showPrintPreview(QStringList *)));
 
+    //QObject::connect(mView, SIGNAL(solveMath(bool)), fHandler, SLOT(setSuppressMessages(bool)));      //if the user starts the solving-process, don't suppress the showing of errors (suppressed when creating pdf's, print-documents and while loading a new file)
+
 
 
     //View -> DocumentHandler
@@ -258,6 +260,7 @@ void Controller::openFile(QFileInfo fileName)
 
     void Controller::showErrorListDialog()
     {
+
         QString retVal;
         bool settingFound;
 
@@ -265,13 +268,17 @@ void Controller::openFile(QFileInfo fileName)
 
         if(settingFound && retVal=="true")
         {
+            qDebug()<<"Controller: calling showErrolistDialog";
             fHandler->showErrorListDialog(mView);
         }
         else
         {
             if(!settingFound)
-                qDebug()<<"Show Errorlistdialog called. Setting not found!";
+                qDebug()<<"Controller: showErrolistDialog called. Setting not found!";
+            else
+                qDebug()<<"Controller: showErrolistDialog called but Setting is set to false.";
 
+            qDebug()<<"Controller: showErrolistDialog: start clearing Errormessages.";
             fHandler->clearErrorList();
         }
     }

@@ -1066,6 +1066,8 @@ MainWindow::~MainWindow()
         }
         else
         {
+            qDebug()<<"Mainwindow: Solve Math has been triggered. Emiting signals";
+            emit solveMath(false);
             emit solveMath(mathForm->getListofCurrentFormulas());
         }
         ui->tabWidgetTools->setCurrentIndex(0);
@@ -1091,17 +1093,20 @@ MainWindow::~MainWindow()
                 if (ret == QMessageBox::Yes)
                 {
                     ui->tabWidgetTools->setCurrentIndex(0);
+                    emit solveMath(false);
                     emit solveMath(pageEdit->toPlainText(), true, mathForm->getListofCurrentFormulas());
                 }
                 else if (ret == QMessageBox::No)
                 {
                     ui->tabWidgetTools->setCurrentIndex(0);
+                    emit solveMath(false);
                     emit solveMath(pageEdit->toPlainText(), false, mathForm->getListofCurrentFormulas());
                 }
             }
             else
             {
                 ui->tabWidgetTools->setCurrentIndex(0);
+                emit solveMath(false);
                 emit solveMath(pageEdit->toPlainText(), true, mathForm->getListofCurrentFormulas());
             }
         }

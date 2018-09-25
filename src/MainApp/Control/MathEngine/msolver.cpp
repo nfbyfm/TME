@@ -59,7 +59,7 @@ bool MSolver::startSolving(QList <MFFormula*> *formulaList)
         int numberOfVariables = variableList->count();
         int numberOfEquations = formulaList->count();
 
-        qDebug()<<"MathSolver: number of Equations: " << numberOfEquations << "  number of variables: " << numberOfVariables;
+        //qDebug()<<"MathSolver: number of Equations: " << numberOfEquations << "  number of variables: " << numberOfVariables;
 
         if(numberOfEquations<numberOfVariables)
         {
@@ -128,7 +128,7 @@ bool MSolver::startSolving(QList <MFFormula*> *formulaList)
                                 variableList->append(tmpVal->second);
                                 aMatrix(row,variableList->count()-1) = tmpVal->first;
                                 //setcoeficient
-                                qDebug()<<"MathSolver: Variable "<< tmpVal->second->getTextValue() << "not in List yet. Should not be possible!!!";
+                                //qDebug()<<"MathSolver: Variable "<< tmpVal->second->getTextValue() << "not in List yet. Should not be possible!!!";
                             }
                         }
                         else
@@ -161,13 +161,13 @@ bool MSolver::startSolving(QList <MFFormula*> *formulaList)
             */
 
             // reunite Solution with Variables
-            qDebug()<<"MathSolver: write Values into Variables. Length of x-Vector: " << xVector.length();
+            //qDebug()<<"MathSolver: write Values into Variables. Length of x-Vector: " << xVector.length();
             for(int row = 0; row < xVector.length(); row++)
             {
                 variableList->at(row)->setNumericValue(xVector(row));
                 variableList->at(row)->setSolved(true);
 
-                qDebug()<<"Variable " << variableList->at(row)->getTextValue() << " = " << variableList->at(row)->getNumericValue();
+                //qDebug()<<"Variable " << variableList->at(row)->getTextValue() << " = " << variableList->at(row)->getNumericValue();
             }
             retVal = true;
         }

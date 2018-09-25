@@ -56,11 +56,6 @@ public:
     explicit FaultHandler(QObject *parent = nullptr);
     ~FaultHandler();
 
-    /**
-     * @brief method for supressing error-messages. Used by the main controller when calling the math-engine when printing a file (messages from mathsolver are not supposed to be shown during that time).
-     *
-     */
-    void setSuppressMessages(bool value);
 
 signals:
     /**
@@ -101,6 +96,12 @@ public slots:
      *
      */
     void clearErrorList();
+
+    /**
+     * @brief method for supressing error-messages. Used by the main controller when calling the math-engine when printing a file (messages from mathsolver are not supposed to be shown during that time).
+     *
+     */
+    void setSuppressMessages(bool value);
 
 };
 
