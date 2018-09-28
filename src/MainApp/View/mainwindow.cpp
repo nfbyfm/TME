@@ -68,6 +68,7 @@
  * 14) tables:          import from Excel
  *                      import from clipboard (not just as image!!)
  *                      edit table-cells (merge, borders, add/remove rows, backgroundcolors)
+ * 15) formulas:          import and export simple lists of formulas
  */
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),  ui(new Ui::MainWindow)

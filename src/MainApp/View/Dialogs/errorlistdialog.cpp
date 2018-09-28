@@ -49,14 +49,16 @@ void ErrorListDialog::setErrorMessages(QList <ErrorMessage *> list)
 
         list.at(i)->getSolvable(solvable,strValue);
 
-        newItem = new QTableWidgetItem(strValue);
+        newItem = new QTableWidgetItem(tr("no"));//strValue);
         newItem->setTextColor(QColor::fromRgb(255,255,255,255));
         //set background color
+        /*
         if(solvable)
             newItem->setBackgroundColor(QColor::fromRgb(124,252,0,200)); //lawngreen
         else
             newItem->setBackgroundColor(QColor::fromRgb(255,0,0,200)); //red
-
+            */
+        newItem->setBackgroundColor(QColor::fromRgb(255,0,0,200)); //red
         ui->tableWidget->setItem(i,1,newItem);
 
     //Formula
