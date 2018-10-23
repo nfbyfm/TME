@@ -12,3 +12,15 @@ The program is translated into german and english (above is the german version).
 - [Releases](https://github.com/nfbyfm/TME/releases)
 - [Source-Code-Documentation](https://nfbyfm.github.io/TME/)
 
+## Capabilities
+
+
+
+## Usage
+
+How to use the program
+
+
+## How it works
+
+Uses GiNac-Library. Lexer and Parser need ascii-Math Synthax-like formulas to function correctly.
