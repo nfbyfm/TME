@@ -14,13 +14,20 @@ The program is translated into german and english (above is the german version).
 
 ## Capabilities
 
-
+This application can solve simple (linear) equations, defined in the toolbar on the right hand side. 
+Each equation or single variable can then be liked into the main text-document. When one of the print functions (creation of a pdf as well)
+ gets called, the results from the math-solver get plugged into the text.
 
 ## Usage
 
-How to use the program
+With the application technical documentations can be written. The formatation can be changed similar to any other 
+word processing-software. A special addon however is the possiblity to define mathematical formulas (written in the [ASCII-Math](http://asciimath.org/)-style), 
+which will get automatically solved and plugged into the text-document, once one of the print-functions gets called.
+
+Adding images and tables is possible as well, though with not many functions as of yet.
 
 
 ## How it works
 
-Uses GiNac-Library. Lexer and Parser need ascii-Math Synthax-like formulas to function correctly.
+The program is based on Qt (programmed in C++) and uses the GiNac-Library for solving the equations. 
+The lexer and parser (parts of the math-engine) need [ASCII-Math](http://asciimath.org/)-formated formulas in order to function correctly.
