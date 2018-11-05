@@ -4,6 +4,7 @@
 
 
 #include <QMainWindow>
+#include <QCloseEvent>
 #include <QFileInfo>
 #include <QDesktopServices>
 #include <QUrl>
@@ -444,6 +445,12 @@ protected:
      */
     void changeEvent(QEvent *);
 
+    /**
+     * @brief closeEvent
+     * @details function which gets called when the user closes the application via Alt+F4 or similar ways
+     * @param event
+     */
+    void closeEvent(QCloseEvent *event);
 };
 
 #endif // MAINWINDOW_H

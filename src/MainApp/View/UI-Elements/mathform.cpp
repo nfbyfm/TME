@@ -246,7 +246,7 @@ MathForm::~MathForm()
         ui->variableTableWidget->setRowCount(0);
         setupTableWidgets();
 
-        qDebug()<<"Mathform: resetTables done";
+        //qDebug()<<"Mathform: resetTables done";
     }
 
 
@@ -264,7 +264,7 @@ MathForm::~MathForm()
             result->append(ui->formulaTableWidget->item(i,1)->text().replace(",","."));
         }
 
-        qDebug()<<"MathForm: get List of current Formulas called";
+        //qDebug()<<"MathForm: get List of current Formulas called";
         return result;
     }
 
@@ -362,7 +362,7 @@ MathForm::~MathForm()
                 emit sendError(new ErrorMessage(this,ERROR_ID::MATHINPUT_VariableAlreadyInList,new MetaError(this,new QStringList({variableName}))));
             }
         }
-        qDebug()<<"MathForm: added Variable";
+        //qDebug()<<"MathForm: added Variable";
         emit valuesChanged();
     }
 
@@ -372,7 +372,7 @@ MathForm::~MathForm()
         {
             ui->variableTableWidget->removeRow(ui->variableTableWidget->currentRow());
         }
-        qDebug()<<"MathForm: remove Variable";
+        //qDebug()<<"MathForm: remove Variable";
         emit valuesChanged();
     }
 
@@ -414,7 +414,7 @@ MathForm::~MathForm()
                 emit sendError(new ErrorMessage(this,ERROR_ID::MATHINPUT_FormulaAlreadyInList,new MetaError(this,new QStringList({formulaName}))));
             }
         }
-        qDebug()<<"MathForm: added Formula";
+        //qDebug()<<"MathForm: added Formula";
         emit valuesChanged();
     }
 
@@ -424,7 +424,7 @@ MathForm::~MathForm()
         {
             ui->formulaTableWidget->removeRow(ui->formulaTableWidget->currentRow());
         }
-        qDebug()<<"MathForm: remove Formula";
+        //qDebug()<<"MathForm: remove Formula";
         emit valuesChanged();
     }
 

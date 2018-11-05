@@ -102,6 +102,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+
 #define FILE_FUNCTIONS_EMITTER_START {
 
 
@@ -130,6 +132,28 @@ MainWindow::~MainWindow()
         qDebug()<<"Closing application: check if unsaved changes are to be saved (handled by documenthandler).";
         emit exitApplication(mathForm->getListofCurrentFormulas());
     }
+
+    void MainWindow::closeEvent (QCloseEvent *event)
+    {
+        //event->ignore();
+        if(event->type() == QEvent::Close)
+        {
+            qDebug()<<"Close Application-Event recieved.";
+        }
+        emit exitApplication(mathForm->getListofCurrentFormulas());
+        /*
+        QMessageBox::StandardButton resBtn = QMessageBox::question( this, tr("TME"),
+                                                                        tr("Really close application?\n"),
+                                                                        QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                                                        QMessageBox::Yes);
+        if (resBtn != QMessageBox::Yes) {
+            event->ignore();
+        } else {
+            event->accept();
+        }
+        */
+    }
+
 
     void MainWindow::createNewFile()
     {
