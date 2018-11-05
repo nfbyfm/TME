@@ -21,7 +21,7 @@ Each equation or single variable can then be liked into the main text-document. 
 ## Usage
 
 With the application technical documentations can be written. The formatation can be changed similar to any other 
-word processing-software. A special addon however is the possiblity to define mathematical formulas (written in the [ASCII-Math](http://asciimath.org/)-style), 
+word processing-software. A special addon however is the possiblity to define mathematical formulas (written in the [ASCII-Math](http://asciimath.org/#syntax)-style), 
 which will get automatically solved and plugged into the text-document, once one of the print-functions gets called.
 
 Adding images and tables is possible as well, though with not many functions as of yet.
@@ -29,5 +29,5 @@ Adding images and tables is possible as well, though with not many functions as 
 
 ## How it works
 
-The program is based on Qt (programmed in C++) and uses the GiNac-Library for solving the equations. 
-The lexer and parser (parts of the math-engine) need [ASCII-Math](http://asciimath.org/)-formated formulas in order to function correctly.
+The program is based on Qt (programmed in C++) and uses the [ALGLIB](http://www.alglib.net/)-Library for solving the equations. 
+The lexer and parser (parts of the math-engine) need [ASCII-Math](http://asciimath.org/#syntax)-formated formulas in order to function correctly.
