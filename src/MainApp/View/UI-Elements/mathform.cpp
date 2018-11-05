@@ -235,7 +235,7 @@ MathForm::~MathForm()
 
         }
 
-        qDebug()<<"Mathform: set Mathdata finished";
+        //qDebug()<<"Mathform: set Mathdata finished";
     }
 
     void MathForm::resetTables()
