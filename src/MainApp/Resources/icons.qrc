@@ -47,5 +47,13 @@
         <file>images_and_icons/list-remove.png</file>
         <file>images_and_icons/extras_about.png</file>
         <file>images_and_icons/arrow-left.png</file>
+        <file>images_and_icons/text_OL_RomanLower.png</file>
+        <file>images_and_icons/text_OL_RomanCap.png</file>
+        <file>images_and_icons/text_OL_Decimal.png</file>
+        <file>images_and_icons/text_OL_AlphaLower.png</file>
+        <file>images_and_icons/text_OL_AlphaCap.png</file>
+        <file>images_and_icons/text_BL_Square.png</file>
+        <file>images_and_icons/text_BL_Disc.png</file>
+        <file>images_and_icons/text_BL_Circle.png</file>
     </qresource>
 </RCC>

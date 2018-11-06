@@ -629,41 +629,73 @@
    </property>
   </action>
   <action name="actionList_Bullet_Disc">
+   <property name="icon">
+    <iconset resource="../Resources/icons.qrc">
+     <normaloff>:/images_and_icons/text_BL_Disc.png</normaloff>:/images_and_icons/text_BL_Disc.png</iconset>
+   </property>
    <property name="text">
     <string>Bullet List (Disc)</string>
    </property>
   </action>
   <action name="actionList_Bullet_Circle">
+   <property name="icon">
+    <iconset resource="../Resources/icons.qrc">
+     <normaloff>:/images_and_icons/text_BL_Circle.png</normaloff>:/images_and_icons/text_BL_Circle.png</iconset>
+   </property>
    <property name="text">
     <string>Bullet List (Circle)</string>
    </property>
   </action>
   <action name="actionList_Bullet_Square">
+   <property name="icon">
+    <iconset resource="../Resources/icons.qrc">
+     <normaloff>:/images_and_icons/text_BL_Square.png</normaloff>:/images_and_icons/text_BL_Square.png</iconset>
+   </property>
    <property name="text">
     <string>Bullet List (Square)</string>
    </property>
   </action>
   <action name="actionList_Ordered_List_Decimal">
+   <property name="icon">
+    <iconset resource="../Resources/icons.qrc">
+     <normaloff>:/images_and_icons/text_OL_Decimal.png</normaloff>:/images_and_icons/text_OL_Decimal.png</iconset>
+   </property>
    <property name="text">
     <string>Ordered List (Decimal)</string>
    </property>
   </action>
   <action name="actionList_Ordered_List_Alpha_lower">
+   <property name="icon">
+    <iconset resource="../Resources/icons.qrc">
+     <normaloff>:/images_and_icons/text_OL_AlphaLower.png</normaloff>:/images_and_icons/text_OL_AlphaLower.png</iconset>
+   </property>
    <property name="text">
     <string>Ordered List (Alpha lower)</string>
    </property>
   </action>
   <action name="actionList_Ordered_List_Alpha_upper">
+   <property name="icon">
+    <iconset resource="../Resources/icons.qrc">
+     <normaloff>:/images_and_icons/text_OL_AlphaCap.png</normaloff>:/images_and_icons/text_OL_AlphaCap.png</iconset>
+   </property>
    <property name="text">
     <string>Ordered List (Alpha upper)</string>
    </property>
   </action>
   <action name="actionList_Ordered_List_Roman_lower">
+   <property name="icon">
+    <iconset resource="../Resources/icons.qrc">
+     <normaloff>:/images_and_icons/text_OL_RomanLower.png</normaloff>:/images_and_icons/text_OL_RomanLower.png</iconset>
+   </property>
    <property name="text">
     <string>Ordered List (Roman lower)</string>
    </property>
   </action>
   <action name="actionList_Ordered_List_Roman_upper">
+   <property name="icon">
+    <iconset resource="../Resources/icons.qrc">
+     <normaloff>:/images_and_icons/text_OL_RomanCap.png</normaloff>:/images_and_icons/text_OL_RomanCap.png</iconset>
+   </property>
    <property name="text">
     <string>Ordered List (Roman upper)</string>
    </property>
