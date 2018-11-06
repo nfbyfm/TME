@@ -25,6 +25,9 @@
  * 0) FaultHandling new Mathengine      -> show Unsolvable equations in Error-dialog!!
  *                                      -> other unsolvable Equations are shown as solvable !!!?
  *                                      -> catastrophic failure if formula beginning with a bracket is being used
+ *
+ *  modify render engine? -> show formulas via ID
+ *
  * 1) Testing: write more unittests
  * 2) update Doxygen-Documentation
  * 3) Welcome-Document:   short How-To-Document, add to release *
@@ -59,12 +62,13 @@
  * 7) Images:           when using relative paths: what if the document hasn't been saved yet? Problems when printing!! -> Don't get rendered!
  *                      enumeration & title
  *
- * 8) rendern von Mathematik-Formeln -> als Bild in html-Dokument einfügen?
+ * 8) rendern math formulas -> insert as image?
  * 9) use of Ribbon for menu
  * 10) Mathjax with qt quick?
  * 11) Varaibles: Units and automatic conversion of them
  * 12) Presolver / parser: Brackets, power-function, trigonometric functions
- * 13) Math:        better, faster Editing of formulas and Varaibles
+ * 13) Math:            better, faster Editing of formulas and Varaibles
+ *                      linking of formulas in text via HasCode or similar ID
  * 14) tables:          import from Excel
  *                      import from clipboard (not just as image!!)
  *                      edit table-cells (merge, borders, add/remove rows, backgroundcolors)
