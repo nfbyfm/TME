@@ -25,7 +25,7 @@
         keywords["tan"]         = MTokenType::FUNCTION;
         keywords["\\tan"]       = MTokenType::FUNCTION;
 
-        keywords["abs"]       = MTokenType::FUNCTION;
+        keywords["abs"]         = MTokenType::FUNCTION;
         keywords["\\abs"]       = MTokenType::FUNCTION;
 
         keywords["alpha"]       = MTokenType::VARIABLE;
@@ -72,7 +72,9 @@
         keywords["\\Xi"]       = MTokenType::VARIABLE;
 
         keywords["pi"]       = MTokenType::CONSTANT;
+        keywords["\\pi"]       = MTokenType::CONSTANT;
         keywords["\\Pi"]       = MTokenType::CONSTANT;
+        keywords["\\PI"]       = MTokenType::CONSTANT;
 
         keywords["rho"]       = MTokenType::VARIABLE;
         keywords["\\rho"]       = MTokenType::VARIABLE;

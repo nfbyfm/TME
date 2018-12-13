@@ -62,13 +62,17 @@
  * 7) Images:           when using relative paths: what if the document hasn't been saved yet? Problems when printing!! -> Don't get rendered!
  *                      enumeration & title
  *
- * 8) rendern math formulas -> insert as image?
+ * 8) render math formulas -> insert as image?
  * 9) use of Ribbon for menu
  * 10) Mathjax with qt quick?
  * 11) Varaibles: Units and automatic conversion of them
  * 12) Presolver / parser: Brackets, power-function, trigonometric functions
  * 13) Math:            better, faster Editing of formulas and Varaibles
  *                      linking of formulas in text via HasCode or similar ID
+ *                      better lexer/tokenizer
+ *                              https://en.wikipedia.org/wiki/Flex_(lexical_analyser_generator)
+ *                              ftp://ftp.gnu.org/old-gnu/Manuals/flex-2.5.4/html_mono/flex.html#SEC5
+ *                              https://github.com/westes/flex
  * 14) tables:          import from Excel
  *                      import from clipboard (not just as image!!)
  *                      edit table-cells (merge, borders, add/remove rows, backgroundcolors)
